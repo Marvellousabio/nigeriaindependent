@@ -50,7 +50,7 @@ const Hero = () => {
         />
         {/* Anthem Button */}
         <audio controls className="mt-4">
-          <source src="/nigeria-anthem.mp3" type="audio/mpeg" />
+          <source src="/nigeria-anthem.mp3" type="audio/mpeg"  />
           Your browser does not support the audio element.
         </audio>
       </div>
