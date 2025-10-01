@@ -15,38 +15,38 @@ const ChatBot = () => {
 
   const handleSend = async () => {
     if (!input.trim()) return;
-    
+  
     const userMessage = { role: 'user', content: input };
     setMessages((prev) => [...prev, userMessage]);
     setInput('');
     setLoading(true);
+try{
+     const res = await fetch("/api/chat", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ prompt: input }),
+  });
 
-    try {
-      
-      const res = await fetch ("/api/chat",{
-        method:"POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({prompt:input}),
-      })
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.error || "Server error");
+  }
 
-      const data = await res.json();
-      setMessages((prev) => [...prev, {
-        role: 'assistant',
-        content: data.text
-      },]);
+  const data = await res.json();
 
-    } catch(err) {
-      console.error(err);
-      setMessages((prev)=>[
-        ...prev,
-        {
-          role: "assistant",
-          content: "⚠️ Sorry, something went wrong.",
-        },
-      ]);
-    } finally {
-      setLoading(false);
-    }
+  setMessages((prev) => [
+    ...prev,
+    { role: "assistant", content: data.text },
+  ]);
+} catch (err) {
+  console.error(err);
+  setMessages((prev) => [
+    ...prev,
+    { role: "assistant", content: "⚠️ Sorry, something went wrong. " , err },
+  ]);
+} finally {
+  setLoading(false);
+}
   };
 
   return (
