@@ -23,12 +23,12 @@ const Hero = () => {
         return ()=> clearInterval(interval)
     }, []);
   return (
-    <section className="min-h-screen flex flex-col md:flex-row items-center justify-between px-8 md:px-12  bg-green-50">
+    <section className="lg:min-h-screen flex flex-col md:flex-row items-center justify-between px-8 md:px-12  bg-green-50">
       {/* Left Side */}
       <div className=" md:-mt-20  text-center md:text-left md:space-y-10">
         <div className='flex flex-col md:space-y-4  '>
             <h1 className="text-4xl md:text-6xl font-bold text-green-800">Welcome to Nigeria</h1>
-        <p className="mt-4 md:text-2xl max-w-2/3 text-gray-700 ">
+        <p className="mt-4 md:text-2xl md:max-w-2/3 text-gray-700 ">
           Discover the Giant of Africa - a land of rich culture, diverse heritage, 
           and unbreakable resilience. From our vibrant traditions to our proud history, 
           explore what makes Nigeria extraordinary.
