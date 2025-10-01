@@ -4,6 +4,7 @@ import Hero from '@/components/Hero'
 import Info from '@/components/Info'
 import Footer from '@/components/Footer'
 import About from '@/components/About'
+import ChatBot from '@/components/ChatBot'
 
 
 
@@ -14,6 +15,7 @@ const page = () => {
       <Hero />
       <About />
       <Info />
+      <ChatBot/>
       <Footer />
     </div>
   )
