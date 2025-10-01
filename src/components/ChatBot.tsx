@@ -38,7 +38,7 @@ const ChatBot = () => {
         ...prev,
         {
           role: "assistant",
-          content: " Sorry, I coudnt fetch an answer right now.",
+          content: "⚠️ Sorry, I couldn’t fetch an answer right now. Please try again.",
         },
       ]);
     } finally {
@@ -79,7 +79,7 @@ const ChatBot = () => {
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+              onKeyDown={(e) => e.key === 'Enter' && handleSend()}
               placeholder="Type your question..."
               className="flex-1 px-3 py-2 border text-green-950 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
             />
