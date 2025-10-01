@@ -6,6 +6,7 @@ import {generateText} from "ai"
 import { google } from "@ai-sdk/google";
 
 const ChatBot = () => {
+  
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     { role: 'assistant', content: 'Hi! Ask me anything about Nigeria! 🇳🇬' }
@@ -22,14 +23,17 @@ const ChatBot = () => {
     setLoading(true);
 
     try {
-      const {text} =await generateText({
-        model:google("gemini-1.5-flash"),
-        prompt:input,
-      });
-    
+      
+      const res = await fetch ("/api/chat",{
+        method:"POST",
+        headers: {"Content-type": "application/json"},
+        body: JSON.stringify({prompt:input}),
+      })
+
+      const data = await res.json();
       setMessages((prev) => [...prev, {
         role: 'assistant',
-        content: text
+        content: data.text
       },]);
 
     } catch(err) {
@@ -38,7 +42,7 @@ const ChatBot = () => {
         ...prev,
         {
           role: "assistant",
-          content: "⚠️ Sorry, I couldn’t fetch an answer right now. Please try again.",
+          content: "⚠️ Sorry, something went wrong.",
         },
       ]);
     } finally {
