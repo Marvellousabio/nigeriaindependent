@@ -44,20 +44,21 @@ const Hero = () => {
           </div>
 
       {/* Right Side */}
-      <div className="mt-8 md:mt-0 md:ml-12 hidden md:flex flex-col items-center right-0">
+      <div className="mt-8 md:mt-0 md:mr-20 h-full hidden md:flex flex-col items-center ">
         {/* Animated Flag */}
-        <div className='flex relative'>
-            {isPlaying? `${PlayCircle}`:`${PauseCircle}`}
+        <div className='flex '>
+            
         <Image
-          src="/nigeriaflag.png" 
-          width={250}
-          height={250}
+          src="/nigeria-583.gif" 
+          width={500}
+          height={500}
           alt="Nigeria Flag"
           layout='responsive'
-          className=" absolute w-64 h-40 object-cover rounded shadow-lg"
+          className="w-1/2 object-cover rounded shadow-lg"
         />
         </div>
         {/* Anthem Button */}
+        {isPlaying? <PlayCircle size={20}/>:<PauseCircle size={20}/>}
           <audio 
             controls 
             className="mt-4 rounded-lg shadow-md"
