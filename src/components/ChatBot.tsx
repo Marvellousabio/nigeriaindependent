@@ -23,7 +23,7 @@ const ChatBot = () => {
 
     try {
       const {text} =await generateText({
-        model:google("gemin-1.5-flash"),
+        model:google("gemini-1.5-flash"),
         prompt:input,
       });
     
