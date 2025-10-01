@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { MessageCircle, X, Send} from "lucide-react"
-import {generateText} from "ai"import { google } from "@ai-sdk/google";
+import {generateText} from "ai"
+import { google } from "@ai-sdk/google";
 
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,7 +11,7 @@ const ChatBot = () => {
     { role: 'assistant', content: 'Hi! Ask me anything about Nigeria! 🇳🇬' }
   ]);
   const [input, setInput] = useState('');
-  const [loading, setLoading] useState(false)
+  const [loading, setLoading]= useState(false)
 
   const handleSend = async () => {
     if (!input.trim()) return;
