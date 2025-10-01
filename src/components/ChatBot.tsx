@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import { MessageCircle, X, Send} from "lucide-react"
-import {generateText} from "ai"
-import { google } from "@ai-sdk/google";
+
 
 const ChatBot = () => {
   
@@ -26,7 +25,7 @@ const ChatBot = () => {
       
       const res = await fetch ("/api/chat",{
         method:"POST",
-        headers: {"Content-type": "application/json"},
+        headers: {"Content-Type": "application/json"},
         body: JSON.stringify({prompt:input}),
       })
 
