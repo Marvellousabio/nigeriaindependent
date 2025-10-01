@@ -1,3 +1,4 @@
+import { NextResponse } from "next/server";
 import { google } from "@ai-sdk/google";
 import { generateText } from "ai";
 
@@ -5,10 +6,12 @@ export async function POST(req) {
     try{ 
     const { prompt } = await req.json();
 
-    if (!prompt || prompt.trim() === "") {
-      return Response.json({ error: "Prompt is required" }, { status: 400 });
+    if (!prompt){ return NextResponse.json({ error: "Prompt is required" }, { status: 400 });
     }
-
+    if (!process.env.GOOGLE_API_KEY) {
+      console.error("❌ Missing GOOGLE_API_KEY in environment variables");
+      return NextResponse.json({ error: "Server misconfigured" }, { status: 500 });
+    }
   const { text } = await generateText({
     model: google("gemini-1.5-flash", {
       apiKey: process.env.GOOGLE_API_KEY, // safe on server
@@ -18,12 +21,8 @@ export async function POST(req) {
 
   return Response.json({ text });
 } catch(error){
-    console.error("Chat API error",error)
-
-    return Response.json(
-        { error: "Internal server error" },
-      { status: 500 }
-    );
-    
+    console.error("❌ API /chat error:", error);
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+  
 }
 }
