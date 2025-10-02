@@ -3,6 +3,7 @@ import { google } from "@ai-sdk/google";
 import { generateText } from "ai";
 
 export async function POST(req) {
+    
     try{ 
     const { prompt } = await req.json();
 
