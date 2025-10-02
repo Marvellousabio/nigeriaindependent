@@ -1,52 +1,51 @@
-"use client"
+"use client";
 
 import { useState } from "react";
-import { MessageCircle, X, Send} from "lucide-react"
-
+import { MessageCircle, X, Send } from "lucide-react";
 
 const ChatBot = () => {
-  
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { role: 'assistant', content: 'Hi! Ask me anything about Nigeria! 🇳🇬' }
+    { role: "assistant", content: "Hi! Ask me anything about Nigeria! 🇳🇬" },
   ]);
-  const [input, setInput] = useState('');
-  const [loading, setLoading]= useState(false)
+  const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSend = async () => {
     if (!input.trim()) return;
-  
-    const userMessage = { role: 'user', content: input };
+
+    const userMessage = { role: "user", content: input };
     setMessages((prev) => [...prev, userMessage]);
-    setInput('');
+    setInput("");
     setLoading(true);
-try{
-     const res = await fetch("/api/chat", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ prompt: input }),
-  });
 
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    throw new Error(err.error || "Server error");
-  }
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt: input }),
+      });
 
-  const data = await res.json();
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.error || "Server error");
+      }
 
-  setMessages((prev) => [
-    ...prev,
-    { role: "assistant", content: data.text },
-  ]);
-} catch (err) {
-  console.error(err);
-  setMessages((prev) => [
-    ...prev,
-    { role: "assistant", content: "⚠️ Sorry, something went wrong. " , err },
-  ]);
-} finally {
-  setLoading(false);
-}
+      const data = await res.json();
+
+      setMessages((prev) => [
+        ...prev,
+        { role: "assistant", content: data.text },
+      ]);
+    } catch (err) {
+      console.error(err);
+      setMessages((prev) => [
+        ...prev,
+        { role: "assistant", content: "⚠️ Sorry, something went wrong." },
+      ]);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -65,10 +64,19 @@ try{
           </div>
           <div className="flex-1 overflow-y-auto p-4 space-y-3">
             {messages.map((msg, idx) => (
-              <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-[80%] px-4 py-2 rounded-lg ${
-                  msg.role === 'user' ? 'bg-green-600 text-white' : 'bg-gray-100 text-gray-800'
-                }`}>
+              <div
+                key={idx}
+                className={`flex ${
+                  msg.role === "user" ? "justify-end" : "justify-start"
+                }`}
+              >
+                <div
+                  className={`max-w-[80%] px-4 py-2 rounded-lg ${
+                    msg.role === "user"
+                      ? "bg-green-600 text-white"
+                      : "bg-gray-100 text-gray-800"
+                  }`}
+                >
                   {msg.content}
                 </div>
               </div>
@@ -77,17 +85,17 @@ try{
               <div className="text-sm text-gray-500 italic">Thinking...</div>
             )}
           </div>
-          
+
           <div className="p-4 border-t flex gap-2">
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+              onKeyDown={(e) => e.key === "Enter" && handleSend()}
               placeholder="Type your question..."
               className="flex-1 px-3 py-2 border text-green-950 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
             />
             <button
-            title="send"
+              title="send"
               onClick={handleSend}
               className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
             >
@@ -100,4 +108,4 @@ try{
   );
 };
 
-export default ChatBot
+export default ChatBot;
