@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { MessageCircle, X, Send } from "lucide-react";
 
+
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
@@ -31,6 +32,7 @@ const ChatBot = () => {
         throw new Error(err.error || "Server error");
       }
 
+      
       const data = await res.json();
 
       setMessages((prev) => [

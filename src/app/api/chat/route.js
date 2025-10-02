@@ -8,14 +8,12 @@ export async function POST(req) {
 
     if (!prompt){ return NextResponse.json({ error: "Prompt is required" }, { status: 400 });
     }
-    if (!process.env.GOOGLE_API_KEY) {
+    if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
       console.error("❌ Missing GOOGLE_API_KEY in environment variables");
       return NextResponse.json({ error: "Server misconfigured" }, { status: 500 });
     }
   const { text } = await generateText({
-    model: google("gemini-1.5-flash", {
-      apiKey: process.env.GOOGLE_API_KEY, // safe on server
-    }),
+    model: google("gemini-1.5-flash"),
     prompt,
   });
 
