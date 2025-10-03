@@ -8,7 +8,7 @@ const Footer = ({ companyName = "Bestricky", year = new Date().getFullYear() }) 
   return (
    
 // export default function Footer({ companyName = "Bestricky", year = new Date().getFullYear() }) {
-    <footer className="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
+    <footer className="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 shadow-sm">
       <div className="max-w-7xl mx-auto px-6 py-10 md:py-12">
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
           {/* Brand + short */}
@@ -34,11 +34,11 @@ const Footer = ({ companyName = "Bestricky", year = new Date().getFullYear() }) 
                   id="footer-subscribe"
                   type="email"
                   placeholder="Your email"
-                  className="flex-1 px-3 py-2 border rounded-l-md focus:outline-none focus:ring-2 focus:ring-green-500 text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                  className="flex-1  px-3 py-2 border rounded-l-md focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-200 text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                 />
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-green-600 text-white rounded-r-md hover:bg-green-700 text-sm"
+                  className="px-4 py-2 focus:ring-2 focus:ring-green-700 transition-all duration-200 bg-green-600 text-white rounded-r-md hover:bg-green-700 text-sm"
                   aria-label="Subscribe"
                 >
                   Subscribe
@@ -77,9 +77,11 @@ const Footer = ({ companyName = "Bestricky", year = new Date().getFullYear() }) 
 
           <div className="flex items-center gap-4">
             <nav aria-label="Social links" className="flex items-center gap-3">
-              <Link href="https://twitter.com" target="_blank" rel="noreferrer" className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800" aria-label="Twitter">
-                <Twitter size={16} />
-              </Link>
+              <Link href="https://twitter.com" target="_blank" rel="noreferrer" aria-label="Twitter"
+              className="p-2 rounded-md transition-colors hover:bg-blue-100 hover:text-blue-500 dark:hover:bg-blue-900">
+              <Twitter size={16} />
+            </Link>
+
               <Link href="https://instagram.com" target="_blank" rel="noreferrer" className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800" aria-label="Instagram">
                 <Instagram size={16} />
               </Link>

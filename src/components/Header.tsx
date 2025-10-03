@@ -2,6 +2,7 @@
 import React,{useState} from 'react'
 import Link from 'next/link'
 import { MenuSquare, X } from 'lucide-react'
+import Image from 'next/image'
 
 
 const Header = () => {
@@ -14,8 +15,8 @@ const Header = () => {
   }
   return (
     <>
-    <div className='flex w-full fixed items-center justify-between px-4 sm:px-6 md:px-6 lg:px-17 border-b border-gray-500 py-4 bg-green-50 '>
-      <div className='text-xl font-bold text-green-800'>Nigeria</div>
+    <div className='flex w-full fixed items-center justify-between px-4  md:px-6 lg:px-17 border-b border-gray-500 py-4 bg-green-50/95 '>
+      <div className='text-xl font-bold text-green-800 flex flex-row'><Image  alt='logo' width={30} height={30} src="/nigeria.gif"/> Nigeria</div>
       <div className='flex'>
       <nav className='hidden md:flex space-x-4 text-green-900 gap-7 pr-20'>
         <Link href="/" className='hover:text-green-500'>Home</Link>
@@ -23,15 +24,15 @@ const Header = () => {
         <Link href='#' className='hover:text-green-500'>Support</Link>
         <Link href='#' className='hover:text-green-500'>FAQs</Link>
       </nav>
-      <div className='md:hidden'>{!isOpen? <MenuSquare onClick={handleToggle} className='text-green-800 text-2xl'/>
+      <div className='md:hidden'>{!isOpen? <MenuSquare onClick={handleToggle} className='text-green-800 text-2xl fade'/>
        :<X onClick={handleClose} className='text-green-800 text-2xl'/>}</div>
       
       
 </div> 
     </div>
     {isOpen &&
-        <div className='p-8 z-20 mt-0  '>
-          <nav className='flex flex-col md:hidden lg:hidden space-y-2 text-gray-100 gap-7 '>
+        <div className=' fixed inset-0 bg-green-900 bg-opacity-60 flex flex-col items-end z-30 transition-all duration-20 p-8 mt-0  '>
+          <nav className='flex flex-col md:hidden lg:hidden text-gray-100 gap-7 w-56 bg-white dark:bg-gray-900 shadow-lg p-8 space-y-6 rounded-l-lg '>
         <Link href="/" className='hover:text-green-500'>Home</Link>
         <Link href='/History' className='hover:text-green-500'>History</Link>
         <Link href='#' className='hover:text-green-500'>Support</Link>
