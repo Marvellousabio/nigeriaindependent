@@ -4,28 +4,30 @@ import React, { useEffect, useState } from 'react'
 import {PlayCircle, PauseCircle } from 'lucide-react';
 
 const Hero = () => {
-    const independenceDate = new Date("1660-10-01T00:00:00Z");
+    const independenceDate = new Date("1960-10-01T00:00:00Z");
     const [age,setAge]= useState(" ");
     const [isPlaying,setIsPlaying]= useState(false)
     useEffect(()=>{
         const interval=setInterval(()=>{
             const now= new Date();
             const diff = now.getTime()- independenceDate.getTime();
+             const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+            
+          const remainder = diff - years * (1000 * 60 * 60 * 24 * 365.25);
 
-            const years =Math.floor(diff/(1000 * 60 * 60 *24 *365));
-            const days= Math.floor ((diff/(1000*60*60*24))% 365);
-            const hours= Math.floor((diff/(1000*60*60))%24);
-            const minutes= Math.floor((diff/(1000*60))%60);
-            const seconds= Math.floor((diff/1000)%60);
+      const days = Math.floor(remainder / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((remainder / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((remainder / (1000 * 60)) % 60);
+      const seconds = Math.floor((remainder / 1000) % 60);
 
-            setAge(`${years} years ${days} days ${hours}h ${minutes}m ${seconds}s`);
+            setAge(`${years}y ${days}d ${hours}h ${minutes}m ${seconds}s`);
         }, 1000);
         return ()=> clearInterval(interval)
     }, []);
   return (
-    <section className="lg:min-h-screen flex flex-col md:flex-row items-center justify-between px-8 md:px-12  bg-green-50">
+    <section className="lg:min-h-screen flex flex-col md:flex-row items-center justify-between px-8 py-27 md:px-12 bg-green-50">
       {/* Left Side */}
-      <div className=" md:-mt-20  text-center md:text-left md:space-y-10">
+      <div className=" md:-mt-20 text-center md:text-left md:space-y-10 lg:col-span-7">
         <div className='flex flex-col md:space-y-4  '>
             <h1 className="text-4xl md:text-6xl font-bold text-green-800">Welcome to Nigeria</h1>
         <p className="mt-4 md:text-2xl md:max-w-2/3 text-gray-700 ">
@@ -35,16 +37,16 @@ const Hero = () => {
         </p>
         </div>
         <div className='flex gap-2 items-center '>
-            <button className="mt-6 px-6 py-3 bg-green-600 text-white rounded-xl hover:bg-green-700">
+            <button className="mt-6 px-6 py-3 border-none bg-green-600 text-white rounded-xl hover:bg-green-700">
           Explore
         </button>
-        <p className="mt-6 text-sm text-gray-600 ">We are <span className='text-green-200 text-lg bg-green-700 p-1 font-serif'>{age}</span> old</p>
+        <p className="mt-6 text-sm text-gray-600 items-center inline-flex"><span className='hidden md:flex gap-1'>We are </span><span className='text-green-900 text-2xl md:text-4xl font-digital tracking-wider leading-tight transform scale-y-120'>{age}</span>year old</p>
     
         </div>
           </div>
 
       {/* Right Side */}
-      <div className="mt-8 md:mt-0 md:mr-20 h-full hidden md:flex flex-col items-center ">
+      <div className="mt-8 md:mt-0 md:mr-20 h-full hidden md:flex flex-col items-center lg:col-span-5">
         {/* Animated Flag */}
         <div className='flex '>
             
