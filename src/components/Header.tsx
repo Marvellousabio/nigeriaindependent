@@ -32,7 +32,7 @@ const Header = () => {
     </div>
     {isOpen &&
         <div className=' z-20 p-8 mt-0  '>
-          <nav className='flex flex-col md:hidden lg:hidden text-gray-100 gap-7  '>
+          <nav className='flex flex-col md:hidden lg:hidden text-gray-100 gap-7 py-10 '>
         <Link href="/" className='hover:text-green-500'>Home</Link>
         <Link href='/History' className='hover:text-green-500'>History</Link>
         <Link href='#' className='hover:text-green-500'>Support</Link>
