@@ -1,9 +1,10 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { Clock, MapPin, Crown, BookOpen, Sparkles } from 'lucide-react';
+import { HistoryEvent } from '../types';
 
 const HistorySection = () => {
-  const [historicalFacts, setHistoricalFacts] = useState([]);
+  const [historicalFacts, setHistoricalFacts] = useState<HistoryEvent[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -27,19 +28,19 @@ const HistorySection = () => {
           title: "Independence from Britain",
           description: "Nigeria gained independence on October 1, 1960, becoming Africa's most populous nation.",
           significance: "Marked the beginning of self-governance and nation-building."
-        },
+        } as HistoryEvent,
         {
           year: "1967-1970",
           title: "Nigerian Civil War",
           description: "Also known as the Biafran War, this conflict tested the nation's unity and resilience.",
           significance: "Demonstrated Nigeria's commitment to national unity despite regional differences."
-        },
+        } as HistoryEvent,
         {
           year: "1999",
           title: "Return to Democracy",
           description: "Nigeria transitioned back to civilian rule after years of military governance.",
           significance: "Established the foundation for modern democratic governance."
-        }
+        } as HistoryEvent
       ]);
     } finally {
       setLoading(false);
@@ -78,7 +79,7 @@ const HistorySection = () => {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-blue-800 mb-4">
-            Nigeria's Rich History
+            Nigeria&apos;s Rich History
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Explore the fascinating journey of Nigeria from ancient civilizations to modern nationhood

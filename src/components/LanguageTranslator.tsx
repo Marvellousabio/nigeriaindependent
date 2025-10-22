@@ -74,6 +74,7 @@ const LanguageTranslator = () => {
                 value={sourceLang}
                 onChange={(e) => setSourceLang(e.target.value)}
                 className="w-full p-2 border border-gray-300 rounded-lg mb-2"
+                aria-label="Select source language"
               >
                 {languages.map(lang => (
                   <option key={lang.code} value={lang.code}>{lang.name}</option>
@@ -106,6 +107,7 @@ const LanguageTranslator = () => {
                 value={targetLang}
                 onChange={(e) => setTargetLang(e.target.value)}
                 className="w-full p-2 border border-gray-300 rounded-lg mb-2"
+                aria-label="Select target language"
               >
                 {languages.map(lang => (
                   <option key={lang.code} value={lang.code}>{lang.name}</option>
@@ -136,27 +138,27 @@ const LanguageTranslator = () => {
             <div className="text-center">
               <h4 className="font-medium mb-2">Popular Phrases</h4>
               <ul className="space-y-1">
-                <li>"Good morning" → "Ina kwana" (Hausa)</li>
-                <li>"Thank you" → "E se" (Yoruba)</li>
-                <li>"Welcome" → "Nnọọ" (Igbo)</li>
+                <li>&quot;Good morning&quot; → &quot;Ina kwana&quot; (Hausa)</li>
+                <li>&quot;Thank you&quot; → &quot;E se&quot; (Yoruba)</li>
+                <li>&quot;Welcome&quot; → &quot;Nnọọ&quot; (Igbo)</li>
               </ul>
             </div>
 
             <div className="text-center">
               <h4 className="font-medium mb-2">Cultural Terms</h4>
               <ul className="space-y-1">
-                <li>"Jollof Rice" → "Jolof" (Pidgin)</li>
-                <li>"Egusi Soup" → "Ofe Egusi"</li>
-                <li>"Suya" → "Tsire" (Hausa)</li>
+                <li>&quot;Jollof Rice&quot; → &quot;Jolof&quot; (Pidgin)</li>
+                <li>&quot;Egusi Soup&quot; → &quot;Ofe Egusi&quot;</li>
+                <li>&quot;Suya&quot; → &quot;Tsire&quot; (Hausa)</li>
               </ul>
             </div>
 
             <div className="text-center">
               <h4 className="font-medium mb-2">Greetings</h4>
               <ul className="space-y-1">
-                <li>"How are you?" → "Kana yaya?" (Hausa)</li>
-                <li>"I'm fine" → "Mo wa dada" (Yoruba)</li>
-                <li>"Peace" → "Udo" (Igbo)</li>
+                <li>&quot;How are you?&quot; → &quot;Kana yaya?&quot; (Hausa)</li>
+                <li>&quot;I&apos;m fine&quot; → &quot;Mo wa dada&quot; (Yoruba)</li>
+                <li>&quot;Peace&quot; → &quot;Udo&quot; (Igbo)</li>
               </ul>
             </div>
           </div>

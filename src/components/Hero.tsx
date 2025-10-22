@@ -45,9 +45,9 @@ const Hero = () => {
         }
     };
   return (
-    <section className="lg:min-h-screen flex flex-col md:flex-row   items-center justify-between px-8 py-27 md:px-12 bg-green-50">
+    <section className="lg:min-h-screen flex flex-col md:flex-row  items-center justify-between px-8 py-27 md:px-12 bg-green-50">
       {/* Left Side */}
-      <div className=" md:mt-10 text-center md:text-left md:space-y-10 lg:col-span-7">
+      <div className=" md:mt-10 text-center md:text-left md:space-y-10 lg:col-span-7 ">
         <div className='flex flex-col md:space-y-4  '>
             <h1 className="text-4xl md:text-6xl font-bold text-green-800">
                 {loading ? "Welcome to Nigeria" : (heroContent?.title || "Welcome to Nigeria")}
@@ -91,6 +91,29 @@ const Hero = () => {
             <source src="/nigeria-anthem.mp3" type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>
+      </div>
+      <div className='flex md:hidden mt-4 gap-2 justify-center items-center'>
+        <div className='flex flex-2'>
+          <audio 
+            controls 
+            className="mt-4 rounded-lg shadow-md"
+            onPlay={() => setIsPlaying(true)}
+            onPause={() => setIsPlaying(false)}
+          >
+            <source src="/nigeria-anthem.mp3" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+          </div>
+          <div className='flex flex-2'>
+          <Image
+          src="/nigeria-583.gif" 
+          width={50}
+          height={50}
+          alt="Nigeria Flag"
+          layout='responsive'
+          className="w-1/2 object-cover rounded shadow-lg"
+        />
+        </div>
       </div>
     </section>
   )

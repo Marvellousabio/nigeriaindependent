@@ -3,7 +3,18 @@ import { NextResponse } from "next/server";
 export async function GET(req) {
   try {
     const { searchParams } = new URL(req.url);
-    const category = searchParams.get('category') || 'all';
+   const category = searchParams.get("category") || "all";
+    const country = searchParams.get("country") || "ng";
+
+    const apiKey = process.env.NEWS_API_KEY; // Add your key in .env.local
+    let articles=[];
+    if (apiKey) {
+    const apiUrl = `https://newsapi.org/v2/top-headlines?country=${country}${
+        category !== "all" ? `&category=${category}` : ""
+      }&apiKey=${apiKey}`;
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+
 
     // In a real implementation, you would integrate with a news API like:
     // - NewsAPI.org
@@ -13,9 +24,20 @@ export async function GET(req) {
 
     // For this demo, we'll return mock data
     // In production, replace this with actual API calls
-
-    const mockNews = {
-      all: [
+ if (data.status === "ok" && data.articles?.length > 0) {
+        articles = data.articles.map((article) => ({
+          title: article.title,
+          description: article.description,
+          content: article.content,
+          url: article.url,
+          image: article.urlToImage || "https://placehold.co/400x250?text=No+Image",
+          publishedAt: article.publishedAt,
+          source: article.source,
+          category,
+        }));
+      } 
+     if (articles.length === 0) {
+      articles = [
         {
           title: "Nigeria's Economy Shows Signs of Recovery",
           description: "Latest economic indicators suggest positive growth in key sectors including technology and agriculture.",
@@ -80,18 +102,20 @@ export async function GET(req) {
     };
 
     // Filter by category if specified
-    let articles = mockNews.all;
     if (category !== 'all') {
-      articles = mockNews.all.filter(article => article.category === category);
+      articles = articles.filter(article => article.category === category);
     }
 
     return NextResponse.json({
       articles,
       totalResults: articles.length,
-      category
+      source: articles.length > 0 && apiKey ? "live" : "fallback",
+      category,
+      country
     });
 
-  } catch (error) {
+  } 
+}catch (error) {
     console.error("News API error:", error);
     return NextResponse.json({ error: "Failed to fetch news" }, { status: 500 });
   }

@@ -69,7 +69,7 @@ const ReviewModal = ({ isOpen, onClose, visitorId }: ReviewModalProps) => {
 
         <div className="p-6">
           <p className="text-gray-700 mb-6">
-            We'd love to hear about your experience exploring Nigeria's culture and heritage!
+            We&apos;d love to hear about your experience exploring Nigeria&apos;s culture and heritage!
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -85,6 +85,7 @@ const ReviewModal = ({ isOpen, onClose, visitorId }: ReviewModalProps) => {
                     type="button"
                     onClick={() => setRating(star)}
                     className="focus:outline-none"
+                    aria-label={`Rate ${star} star${star > 1 ? 's' : ''}`}
                   >
                     <Star
                       size={24}

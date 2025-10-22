@@ -1,15 +1,16 @@
 "use client";
 import React, { useState } from 'react';
 import { ChefHat, Clock, Users, Star } from 'lucide-react';
+import { Recipe } from '../types';
 
 const RecipeGenerator = () => {
   const [preferences, setPreferences] = useState({
     cuisine: '',
-    dietary: [],
+    dietary: [] as string[],
     difficulty: '',
     time: ''
   });
-  const [recipe, setRecipe] = useState(null);
+  const [recipe, setRecipe] = useState<Recipe | null>(null);
   const [loading, setLoading] = useState(false);
 
   const cuisines = [
@@ -21,7 +22,7 @@ const RecipeGenerator = () => {
     'Vegetarian', 'Vegan', 'Halal', 'Kosher', 'Gluten-Free', 'Dairy-Free'
   ];
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
@@ -65,6 +66,7 @@ const RecipeGenerator = () => {
                 onChange={(e) => setPreferences({...preferences, cuisine: e.target.value})}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600"
                 required
+                aria-label="Select cuisine type"
               >
                 <option value="">Select cuisine</option>
                 {cuisines.map(cuisine => (
@@ -83,6 +85,7 @@ const RecipeGenerator = () => {
                 onChange={(e) => setPreferences({...preferences, time: e.target.value})}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600"
                 required
+                aria-label="Select cooking time"
               >
                 <option value="">Select time</option>
                 <option value="quick">Quick (15-30 mins)</option>
@@ -101,6 +104,7 @@ const RecipeGenerator = () => {
                 onChange={(e) => setPreferences({...preferences, difficulty: e.target.value})}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600"
                 required
+                aria-label="Select difficulty level"
               >
                 <option value="">Select difficulty</option>
                 <option value="easy">Easy</option>

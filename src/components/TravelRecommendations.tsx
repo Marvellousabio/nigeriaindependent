@@ -1,18 +1,19 @@
 "use client";
 import React, { useState } from 'react';
-import { MapPin, Calendar, Users, Star } from 'lucide-react';
+import {  Calendar, Users, Star } from 'lucide-react';
+import { TravelDestination } from '../types';
 
 const TravelRecommendations = () => {
   const [preferences, setPreferences] = useState({
     duration: '',
-    interests: [],
+    interests: [] as string[],
     budget: '',
     groupSize: ''
   });
-  const [recommendations, setRecommendations] = useState(null);
+  const [recommendations, setRecommendations] = useState<{ destinations: TravelDestination[] } | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
@@ -49,10 +50,12 @@ const TravelRecommendations = () => {
                 Trip Duration
               </label>
               <select
+                name="duration"
                 value={preferences.duration}
                 onChange={(e) => setPreferences({...preferences, duration: e.target.value})}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600"
                 required
+                aria-label="Select trip duration"
               >
                 <option value="">Select duration</option>
                 <option value="weekend">Weekend (2-3 days)</option>
@@ -68,10 +71,12 @@ const TravelRecommendations = () => {
                 Group Size
               </label>
               <select
+                name="groupSize"
                 value={preferences.groupSize}
                 onChange={(e) => setPreferences({...preferences, groupSize: e.target.value})}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600"
                 required
+                aria-label="Select group size"
               >
                 <option value="">Select group size</option>
                 <option value="solo">Solo traveler</option>
@@ -86,10 +91,12 @@ const TravelRecommendations = () => {
                 Budget Range
               </label>
               <select
+                name="budget"
                 value={preferences.budget}
                 onChange={(e) => setPreferences({...preferences, budget: e.target.value})}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600"
                 required
+                aria-label="Select budget range"
               >
                 <option value="">Select budget</option>
                 <option value="budget">Budget (₦50k-150k)</option>

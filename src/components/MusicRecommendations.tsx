@@ -1,11 +1,12 @@
 "use client";
 import React, { useState } from 'react';
 import { Music, Play, Heart, Share2 } from 'lucide-react';
+import { MusicRecommendation } from '../types';
 
 const MusicRecommendations = () => {
   const [mood, setMood] = useState('');
   const [genre, setGenre] = useState('');
-  const [recommendations, setRecommendations] = useState(null);
+  const [recommendations, setRecommendations] = useState<MusicRecommendation | null>(null);
   const [loading, setLoading] = useState(false);
 
   const moods = [
@@ -18,7 +19,7 @@ const MusicRecommendations = () => {
     'R&B', 'Gospel', 'Traditional', 'Pop', 'Reggae'
   ];
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
@@ -62,6 +63,7 @@ const MusicRecommendations = () => {
                 onChange={(e) => setMood(e.target.value)}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600"
                 required
+                aria-label="Select your mood"
               >
                 <option value="">Select your mood</option>
                 {moods.map(m => (
@@ -79,6 +81,7 @@ const MusicRecommendations = () => {
                 onChange={(e) => setGenre(e.target.value)}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600"
                 required
+                aria-label="Select genre preference"
               >
                 <option value="">Select genre</option>
                 {genres.map(g => (
@@ -119,13 +122,13 @@ const MusicRecommendations = () => {
                   </div>
 
                   <div className="flex space-x-2">
-                    <button className="p-2 text-gray-400 hover:text-red-500 transition-colors">
+                    <button className="p-2 text-gray-400 hover:text-red-500 transition-colors" aria-label="Like song">
                       <Heart size={20} />
                     </button>
-                    <button className="p-2 text-gray-400 hover:text-blue-500 transition-colors">
+                    <button className="p-2 text-gray-400 hover:text-blue-500 transition-colors" aria-label="Share song">
                       <Share2 size={20} />
                     </button>
-                    <button className="p-2 text-green-600 hover:text-green-700 transition-colors">
+                    <button className="p-2 text-green-600 hover:text-green-700 transition-colors" aria-label="Play song">
                       <Play size={20} />
                     </button>
                   </div>
@@ -134,7 +137,7 @@ const MusicRecommendations = () => {
                 {song.lyrics && (
                   <div className="mt-4 p-4 bg-gray-50 rounded-lg">
                     <h4 className="font-medium text-gray-800 mb-2">Sample Lyrics:</h4>
-                    <p className="text-gray-700 text-sm italic">"{song.lyrics}"</p>
+                    <p className="text-gray-700 text-sm italic">&quot;{song.lyrics}&quot;</p>
                   </div>
                 )}
 
@@ -164,7 +167,7 @@ const MusicRecommendations = () => {
                           <p className="text-sm text-gray-600">{song.artist}</p>
                         </div>
                       </div>
-                      <button className="p-2 text-green-600 hover:text-green-700">
+                      <button className="p-2 text-green-600 hover:text-green-700" aria-label="Play song">
                         <Play size={16} />
                       </button>
                     </div>

@@ -1,12 +1,14 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import Image from 'next/image';
 import { Newspaper, Clock, ExternalLink, RefreshCw } from 'lucide-react';
+import { NewsArticle } from '../types';
 
 const NewsAggregator = () => {
-  const [news, setNews] = useState([]);
+  const [news, setNews] = useState<NewsArticle[]>([]);
   const [loading, setLoading] = useState(true);
   const [category, setCategory] = useState('all');
-  const [lastUpdated, setLastUpdated] = useState(null);
+  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
   const categories = [
     { value: 'all', label: 'All News' },
@@ -17,11 +19,7 @@ const NewsAggregator = () => {
     { value: 'technology', label: 'Technology' }
   ];
 
-  useEffect(() => {
-    fetchNews();
-  }, [category]);
-
-  const fetchNews = async () => {
+  const fetchNews = useCallback(async () => {
     setLoading(true);
     try {
       const response = await fetch(`/api/news?category=${category}`);
@@ -35,12 +33,16 @@ const NewsAggregator = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [category]);
 
-  const formatTimeAgo = (dateString) => {
+  useEffect(() => {
+    fetchNews();
+  }, [category, fetchNews]);
+
+  const formatTimeAgo = (dateString: string) => {
     const now = new Date();
     const articleDate = new Date(dateString);
-    const diffInHours = Math.floor((now - articleDate) / (1000 * 60 * 60));
+    const diffInHours = Math.floor((now.getTime() - articleDate.getTime()) / (1000 * 60 * 60));
 
     if (diffInHours < 1) return 'Just now';
     if (diffInHours < 24) return `${diffInHours}h ago`;
@@ -101,20 +103,21 @@ const NewsAggregator = () => {
           </div>
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {news.map((article, index) => (
-              <article key={index} className="bg-gray-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-                {article.image && (
-                  <div className="h-48 bg-gray-200 relative">
-                    <img
-                      src={article.image}
-                      alt={article.title}
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        e.target.style.display = 'none';
-                      }}
-                    />
-                  </div>
-                )}
+            {news.map((article) => (
+               <article key={article.url} className="bg-gray-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                 {article.image && (
+                   <div className="h-48 bg-gray-200 relative">
+                     <Image
+                       src={article.image}
+                       alt={article.title}
+                       fill
+                       className="object-cover"
+                       onError={(e) => {
+                         (e.currentTarget as HTMLImageElement).style.display = 'none';
+                       }}
+                     />
+                   </div>
+                 )}
 
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-3">
@@ -132,7 +135,7 @@ const NewsAggregator = () => {
                   </h3>
 
                   <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-                    {article.description || article.content?.substring(0, 150) + '...'}
+                    {article.description || (article.content ? article.content.substring(0, 150) + '...' : '')}
                   </p>
 
                   <div className="flex items-center justify-between">

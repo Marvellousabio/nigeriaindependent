@@ -25,6 +25,12 @@ export interface MusicRecommendation {
     artist: string;
     album?: string;
     year?: string;
+    description?: string;
+    genre?: string;
+    duration?: string;
+    rating?: number;
+    lyrics?: string;
+    culturalContext?: string;
   }>;
   playlist: {
     name: string;
@@ -67,6 +73,9 @@ export interface TravelDestination {
   highlights: string[];
   bestTimeToVisit: string;
   duration: string;
+  rating?: number;
+  bestTime?: string;
+  cost?: string;
 }
 
 export interface VirtualTour {

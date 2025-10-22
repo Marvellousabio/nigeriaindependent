@@ -1,9 +1,10 @@
 "use client";
 import React, { useState } from 'react';
 import { MapPin, Play, Pause, RotateCcw, Eye } from 'lucide-react';
+import { VirtualTour } from '../types';
 
 const VirtualTours = () => {
-  const [selectedTour, setSelectedTour] = useState(null);
+  const [selectedTour, setSelectedTour] = useState<VirtualTour | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
   const tours = [
@@ -63,7 +64,7 @@ const VirtualTours = () => {
     }
   ];
 
-  const handleTourSelect = (tour) => {
+  const handleTourSelect = (tour: VirtualTour) => {
     setSelectedTour(tour);
     setIsPlaying(false);
   };
@@ -80,7 +81,7 @@ const VirtualTours = () => {
           Virtual Reality Tours of Nigerian Landmarks
         </h2>
         <p className="text-center text-gray-600 mb-12">
-          Experience Nigeria's rich heritage through immersive virtual tours
+          Experience Nigeria&apos;s rich heritage through immersive virtual tours
         </p>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
@@ -191,7 +192,7 @@ const VirtualTours = () => {
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 inline-block">
             <h4 className="text-lg font-semibold text-blue-800 mb-2">Coming Soon: Full VR Experience</h4>
             <p className="text-blue-700">
-              We're developing immersive 360° virtual reality tours. Sign up for updates to be the first to experience Nigeria's landmarks in VR!
+              We&apos;re developing immersive 360° virtual reality tours. Sign up for updates to be the first to experience Nigeria&apos;s landmarks in VR!
             </p>
             <button className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
               Notify Me

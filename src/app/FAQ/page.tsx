@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import Header from '@/components/Header';
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -63,8 +64,9 @@ const FAQ = () => {
 
   return (
     <div className="min-h-screen bg-secondary-50 dark:bg-secondary-900 transition-colors duration-300">
+      <Header/>
       <section className="px-6 md:px-16 py-16">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto mt-5">
           <h1 className="text-5xl font-bold text-green-800 mb-12 text-center">Frequently Asked Questions</h1>
           <p className="text-lg text-gray-700 mb-12 text-center">
             Everything you need to know about Nigeria's culture, history, travel, and more.
