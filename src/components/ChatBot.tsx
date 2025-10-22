@@ -7,7 +7,10 @@ import { MessageCircle, X, Send } from "lucide-react";
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { role: "assistant", content: "Hi! Ask me anything about Nigeria! 🇳🇬" },
+    {
+      role: "assistant",
+      content: "Hi! I'm your Nigeria culture expert! 🇳🇬 Ask me about Nigerian history, culture, food, music, travel tips, or current events. I can also help with translations and recommendations!"
+    },
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -62,7 +65,7 @@ const ChatBot = () => {
       {isOpen && (
         <div className="fixed bottom-24 right-6 w-80 h-96 bg-white rounded-lg shadow-2xl flex flex-col z-50">
           <div className="bg-green-600 text-white px-4 py-3 rounded-t-lg font-semibold">
-            Ask About Nigeria
+            Nigeria Culture Assistant
           </div>
           <div className="flex-1 overflow-y-auto p-4 space-y-3">
             {messages.map((msg, idx) => (
@@ -93,7 +96,7 @@ const ChatBot = () => {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSend()}
-              placeholder="Type your question..."
+              placeholder="Ask about Nigeria's culture, history, food..."
               className="flex-1 px-3 py-2 border text-green-950 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
             />
             <button
