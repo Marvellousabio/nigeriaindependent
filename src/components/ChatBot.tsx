@@ -17,7 +17,7 @@ const ChatBot = () => {
 
   useEffect(() => {
     // Add event listener for starting AI chat
-    const handleStartAIChat = (event: any) => {
+    const handleStartAIChat = (event: CustomEvent<{ message?: string }>) => {
       setIsOpen(true);
       if (event.detail?.message) {
         // Simulate user message
@@ -52,10 +52,10 @@ const ChatBot = () => {
       }
     };
 
-    window.addEventListener('startAIChat', handleStartAIChat);
+    window.addEventListener('startAIChat', handleStartAIChat as EventListener);
 
     return () => {
-      window.removeEventListener('startAIChat', handleStartAIChat);
+      window.removeEventListener('startAIChat', handleStartAIChat as EventListener);
     };
   }, []);
 

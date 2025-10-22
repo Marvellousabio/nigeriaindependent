@@ -100,7 +100,7 @@ const TravelSection = () => {
             Discover Nigeria
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Experience Africa's most populous nation - a land of incredible diversity, rich culture, and warm hospitality
+            Experience Africa&apos;s most populous nation - a land of incredible diversity, rich culture, and warm hospitality
           </p>
         </div>
 

@@ -69,7 +69,7 @@ const FAQ = () => {
         <div className="max-w-4xl mx-auto mt-5">
           <h1 className="text-5xl font-bold text-green-800 mb-12 text-center">Frequently Asked Questions</h1>
           <p className="text-lg text-gray-700 mb-12 text-center">
-            Everything you need to know about Nigeria's culture, history, travel, and more.
+            Everything you need to know about Nigeria&apos;s culture, history, travel, and more.
           </p>
 
           <div className="space-y-4">
@@ -98,7 +98,7 @@ const FAQ = () => {
           <div className="mt-16 bg-white p-8 rounded-lg shadow-md">
             <h2 className="text-2xl font-bold text-green-800 mb-4">Still have questions?</h2>
             <p className="text-gray-700 mb-6">
-              Can't find what you're looking for? Our AI assistant is here to help with any questions about Nigeria.
+              Can&apos;t find what you&apos;re looking for? Our AI assistant is here to help with any questions about Nigeria.
             </p>
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
