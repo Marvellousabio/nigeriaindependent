@@ -1,35 +1,57 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&family=Outfit:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=VT323&display=swap');
-
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap');
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #fff;
+/* Nigeria-Inspired Color Palette */
+/* Light Theme - Clean and Modern */
+.light {
+  --color-primary: #008751;      /* Nigerian Green */
+  --color-primary-dark: #006341; /* Darker Green */
+  --color-primary-light: #4ade80; /* Light Green */
+  --color-secondary: #ffffff;    /* White */
+  --color-accent: #f59e0b;       /* Golden Yellow */
+  --color-background: #f8fafc;   /* Light Gray */
+  --color-surface: #ffffff;      /* White */
+  --color-text-primary: #1e293b; /* Dark Slate */
+  --color-text-secondary: #64748b; /* Medium Gray */
+  --color-text-muted: #94a3b8;   /* Light Gray */
+  --color-border: #e2e8f0;       /* Light Border */
+  --color-border-dark: #cbd5e1;  /* Darker Border */
+  --color-hover: #f1f5f9;        /* Hover Background */
+  --color-focus: #dbeafe;        /* Focus Background */
+}
+
+/* Dark Theme - Elegant and Modern */
+.dark {
+  --color-primary: #4ade80;      /* Bright Green */
+  --color-primary-dark: #22c55e; /* Medium Green */
+  --color-primary-light: #86efac; /* Light Green */
+  --color-secondary: #1e293b;    /* Dark Slate */
+  --color-accent: #fbbf24;       /* Bright Yellow */
+  --color-background: #0f172a;   /* Dark Navy */
+  --color-surface: #1e293b;      /* Dark Surface */
+  --color-text-primary: #f1f5f9; /* Light Text */
+  --color-text-secondary: #cbd5e1; /* Medium Text */
+  --color-text-muted: #64748b;   /* Muted Text */
+  --color-border: #334155;       /* Dark Border */
+  --color-border-dark: #475569;  /* Darker Border */
+  --color-hover: #334155;        /* Hover Background */
+  --color-focus: #1e293b;        /* Focus Background */
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+body {
+  font-family: "Lora", sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  
-  font-family: "Lora",sans-serif;
-}
 .font-digital {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 700;
 }

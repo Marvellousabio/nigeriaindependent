@@ -51,7 +51,7 @@ const NewsAggregator = () => {
   return (
     <section className="px-6 md:px-16 py-16 bg-white">
       <div className="max-w-6xl mx-auto">
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center justify-between mb-8 mt-5">
           <div>
             <h2 className="text-4xl font-bold text-green-800 mb-2">
               Nigeria News & Updates

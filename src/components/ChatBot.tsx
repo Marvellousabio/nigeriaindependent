@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MessageCircle, X, Send } from "lucide-react";
 
 
@@ -14,6 +14,50 @@ const ChatBot = () => {
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    // Add event listener for starting AI chat
+    const handleStartAIChat = (event: any) => {
+      setIsOpen(true);
+      if (event.detail?.message) {
+        // Simulate user message
+        const userMessage = { role: "user", content: event.detail.message };
+        setMessages((prev) => [...prev, userMessage]);
+        setInput("");
+        setLoading(true);
+
+        // Send to API
+        fetch("/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ prompt: event.detail.message }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            setMessages((prev) => [
+              ...prev,
+              { role: "assistant", content: data.text },
+            ]);
+          })
+          .catch((err) => {
+            console.error(err);
+            setMessages((prev) => [
+              ...prev,
+              { role: "assistant", content: "⚠️ Sorry, something went wrong." },
+            ]);
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+      }
+    };
+
+    window.addEventListener('startAIChat', handleStartAIChat);
+
+    return () => {
+      window.removeEventListener('startAIChat', handleStartAIChat);
+    };
+  }, []);
 
   const handleSend = async () => {
     if (!input.trim()) return;

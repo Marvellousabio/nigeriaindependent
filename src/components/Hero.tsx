@@ -45,9 +45,9 @@ const Hero = () => {
         }
     };
   return (
-    <section className="lg:min-h-screen flex flex-col md:flex-row items-center justify-between px-8 py-27 md:px-12 bg-green-50">
+    <section className="lg:min-h-screen flex flex-col md:flex-row   items-center justify-between px-8 py-27 md:px-12 bg-green-50">
       {/* Left Side */}
-      <div className=" md:-mt-20 text-center md:text-left md:space-y-10 lg:col-span-7">
+      <div className=" md:mt-10 text-center md:text-left md:space-y-10 lg:col-span-7">
         <div className='flex flex-col md:space-y-4  '>
             <h1 className="text-4xl md:text-6xl font-bold text-green-800">
                 {loading ? "Welcome to Nigeria" : (heroContent?.title || "Welcome to Nigeria")}
