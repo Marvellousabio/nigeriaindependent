@@ -7,7 +7,7 @@ const CulturalQuiz = () => {
   const [score, setScore] = useState(0);
   const [showResult, setShowResult] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
-  const [questions, setQuestions] = useState([]);
+  const [questions, setQuestions] = useState<{ question: string; options: string[]; correct: number; explanation: string }[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -50,7 +50,7 @@ const CulturalQuiz = () => {
     }
   };
 
-  const handleAnswerSelect = (answerIndex) => {
+  const handleAnswerSelect = (answerIndex: number) => {
     setSelectedAnswer(answerIndex);
   };
 
@@ -164,8 +164,8 @@ const CulturalQuiz = () => {
             <div className="w-full bg-gray-200 rounded-full h-2">
               <div
                 className="bg-green-600 h-2 rounded-full transition-all duration-300"
-                style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
-              ></div>
+                style={{ width: `${questions.length > 0 ? ((currentQuestion + 1) / questions.length) * 100 : 0}%` }}
+              />
             </div>
           </div>
 
@@ -175,7 +175,7 @@ const CulturalQuiz = () => {
             </h3>
 
             <div className="space-y-3">
-              {question.options.map((option, index) => (
+              {question.options.map((option: string, index: number) => (
                 <button
                   key={index}
                   onClick={() => handleAnswerSelect(index)}

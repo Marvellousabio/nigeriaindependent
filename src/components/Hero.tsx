@@ -1,14 +1,14 @@
 "use client";
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import {PlayCircle, PauseCircle, Sparkles } from 'lucide-react';
 
 const Hero = () => {
-    const independenceDate = new Date("1960-10-01T00:00:00Z");
-    const [age,setAge]= useState(" ");
-    const [isPlaying,setIsPlaying]= useState(false);
-    const [heroContent, setHeroContent] = useState(null);
-    const [loading, setLoading] = useState(true);
+     const [age,setAge]= useState(" ");
+     const [isPlaying,setIsPlaying]= useState(false);
+     const [heroContent, setHeroContent] = useState<{ title?: string; description?: string; ctaText?: string } | null>(null);
+     const [loading, setLoading] = useState(true);
+     const independenceDate = useMemo(() => new Date("1960-10-01T00:00:00Z"), []);
     useEffect(()=>{
         const interval=setInterval(()=>{
             const now= new Date();
