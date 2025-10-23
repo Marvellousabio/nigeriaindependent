@@ -113,7 +113,7 @@ const VisitorPopup = () => {
                 required
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
+                className="w-full px-3 py-2 border border-gray-300  text-green-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
                 placeholder="Enter your name"
               />
             </div>
@@ -129,7 +129,7 @@ const VisitorPopup = () => {
                 required
                 value={formData.country}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
+                className="w-full px-3 py-2 border border-gray-300 text-green-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
                 placeholder="Where are you from?"
               />
             </div>
@@ -145,7 +145,7 @@ const VisitorPopup = () => {
                 value={formData.interests}
                 onChange={handleChange}
                 rows={3}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
+                className="w-full px-3 py-2 border text-green-900 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
                 placeholder="e.g., culture, history, food, music, travel, business..."
               />
             </div>
