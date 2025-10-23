@@ -6,8 +6,7 @@ const CulturalQuiz = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [showResult, setShowResult] = useState(false);
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
-  const [quizCompleted, setQuizCompleted] = useState(false);
+  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -65,7 +64,6 @@ const CulturalQuiz = () => {
       setSelectedAnswer(null);
     } else {
       setShowResult(true);
-      setQuizCompleted(true);
     }
   };
 
@@ -74,7 +72,6 @@ const CulturalQuiz = () => {
     setScore(0);
     setShowResult(false);
     setSelectedAnswer(null);
-    setQuizCompleted(false);
     generateQuiz();
   };
 

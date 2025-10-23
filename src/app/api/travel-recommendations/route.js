@@ -47,7 +47,7 @@ export async function POST(req) {
     let recommendations;
     try {
       recommendations = JSON.parse(text);
-    } catch (parseError) {
+    } catch {
       // If parsing fails, try to extract JSON from the text
       const jsonMatch = text.match(/\{[\s\S]*\}/);
       if (jsonMatch) {

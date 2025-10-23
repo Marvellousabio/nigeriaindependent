@@ -25,7 +25,7 @@ const Hero = () => {
             setAge(`${years}y ${days}d ${hours}h ${minutes}m ${seconds}s`);
         }, 1000);
         return ()=> clearInterval(interval)
-    }, []);
+    }, [independenceDate]);
 
     useEffect(() => {
         generateHeroContent();

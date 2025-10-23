@@ -17,11 +17,12 @@ const ChatBot = () => {
 
   useEffect(() => {
     // Add event listener for starting AI chat
-    const handleStartAIChat = (event: CustomEvent<{ message?: string }>) => {
+    const handleStartAIChat = (event: Event) => {
+      const customEvent = event as CustomEvent<{ message?: string }>;
       setIsOpen(true);
-      if (event.detail?.message) {
+      if (customEvent.detail?.message) {
         // Simulate user message
-        const userMessage = { role: "user", content: event.detail.message };
+        const userMessage = { role: "user" as const, content: customEvent.detail.message };
         setMessages((prev) => [...prev, userMessage]);
         setInput("");
         setLoading(true);
@@ -30,20 +31,20 @@ const ChatBot = () => {
         fetch("/api/chat", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ prompt: event.detail.message }),
+          body: JSON.stringify({ prompt: customEvent.detail.message }),
         })
           .then((res) => res.json())
-          .then((data) => {
+          .then((data: { text: string }) => {
             setMessages((prev) => [
               ...prev,
-              { role: "assistant", content: data.text },
+              { role: "assistant" as const, content: data.text },
             ]);
           })
-          .catch((err) => {
+          .catch((err: unknown) => {
             console.error(err);
             setMessages((prev) => [
               ...prev,
-              { role: "assistant", content: "⚠️ Sorry, something went wrong." },
+              { role: "assistant" as const, content: "⚠️ Sorry, something went wrong." },
             ]);
           })
           .finally(() => {
@@ -52,10 +53,10 @@ const ChatBot = () => {
       }
     };
 
-    window.addEventListener('startAIChat', handleStartAIChat as EventListener);
+    window.addEventListener('startAIChat', handleStartAIChat);
 
     return () => {
-      window.removeEventListener('startAIChat', handleStartAIChat as EventListener);
+      window.removeEventListener('startAIChat', handleStartAIChat);
     };
   }, []);
 
