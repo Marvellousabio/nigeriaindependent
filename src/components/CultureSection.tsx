@@ -1,9 +1,10 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { Heart, Music, ChefHat, Users, Sparkles } from 'lucide-react';
+import { CulturalContent } from '../types';
 
 const CultureSection = () => {
-  const [culturalFacts, setCulturalFacts] = useState([]);
+  const [culturalFacts, setCulturalFacts] = useState<CulturalContent[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

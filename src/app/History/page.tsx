@@ -3,6 +3,8 @@
 import React from 'react';
 import VirtualTours from '@/components/VirtualTours';
 import Header from '@/components/Header';
+import CultureSection from '@/components/CultureSection';
+import Footer from '@/components/Footer';
 
 const History = () => {
   const timeline = [
@@ -34,6 +36,7 @@ const History = () => {
   return (
     <div className="min-h-screen bg-secondary-50 dark:bg-secondary-900 transition-colors duration-300">
       <Header />
+      <CultureSection />
       <section className="px-6 md:px-16 py-16">
         <div className="max-w-6xl mx-auto">
           <h1 className="text-5xl font-bold text-green-800 mb-12 md:mt-5 text-center">Nigeria&apos;s History & Heritage</h1>
@@ -104,6 +107,7 @@ const History = () => {
           </div>
         </div>
       </section>
+      <Footer/>
     </div>
   );
 };

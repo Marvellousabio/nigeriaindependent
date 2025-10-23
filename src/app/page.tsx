@@ -4,7 +4,6 @@ import React from 'react'
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import About from '@/components/About'
-import CultureSection from '@/components/CultureSection'
 import TravelSection from '@/components/TravelSection'
 import TravelRecommendations from '@/components/TravelRecommendations'
 import LanguageTranslator from '@/components/LanguageTranslator'
@@ -26,7 +25,7 @@ const page = () => {
       <Header />
       <Hero />
       <About />
-      <CultureSection />
+      
       <TravelSection />
       <TravelRecommendations />
       <LanguageTranslator />
