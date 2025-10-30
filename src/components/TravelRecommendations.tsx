@@ -146,32 +146,51 @@ const TravelRecommendations = () => {
               {recommendations.destinations?.map((dest, index) => (
                 <div key={index} className="border border-gray-200 rounded-lg p-6">
                   <div className="flex items-start justify-between mb-4">
-                    <div>
+                    <div className="flex-1">
                       <h4 className="text-xl font-semibold text-gray-800">{dest.name}</h4>
-                      <p className="text-gray-600">{dest.description}</p>
+                      <p className="text-gray-600 text-sm mb-2">{dest.description}</p>
+                      <div className="flex items-center">
+                        <Star className="w-4 h-4 text-yellow-500 fill-current" />
+                        <span className="ml-1 text-gray-700 text-sm">{dest.rating}/5</span>
+                      </div>
                     </div>
-                    <div className="flex items-center">
-                      <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                      <span className="ml-1 text-gray-700">{dest.rating}</span>
-                    </div>
+                    <button
+                      onClick={() => {
+                        const shareText = `Check out this travel recommendation for ${dest.name} in Nigeria!\n\n${dest.description}\n\nHighlights: ${dest.highlights?.join(', ')}\n\nFind more at: ${window.location.href}`;
+                        if (navigator.share) {
+                          navigator.share({
+                            title: `Travel to ${dest.name}, Nigeria`,
+                            text: shareText,
+                            url: window.location.href
+                          });
+                        } else {
+                          navigator.clipboard.writeText(shareText);
+                          alert('Travel recommendation copied to clipboard!');
+                        }
+                      }}
+                      className="ml-4 px-3 py-1 bg-green-600 text-white text-sm rounded-lg hover:bg-green-700"
+                    >
+                      Share
+                    </button>
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <h5 className="font-medium text-gray-800 mb-2">Highlights:</h5>
                       <ul className="text-sm text-gray-600 space-y-1">
-                        {dest.highlights?.map((highlight, i) => (
+                        {dest.highlights?.slice(0, 3).map((highlight, i) => (
                           <li key={i}>• {highlight}</li>
                         ))}
                       </ul>
                     </div>
 
                     <div>
-                      <h5 className="font-medium text-gray-800 mb-2">Best Time to Visit:</h5>
-                      <p className="text-sm text-gray-600">{dest.bestTime}</p>
-
-                      <h5 className="font-medium text-gray-800 mb-2 mt-4">Estimated Cost:</h5>
-                      <p className="text-sm text-gray-600">{dest.cost}</p>
+                      <h5 className="font-medium text-gray-800 mb-2">Key Facts:</h5>
+                      <ul className="text-sm text-gray-600 space-y-1">
+                        <li>• Best time: {dest.bestTime}</li>
+                        <li>• Cost: {dest.cost}</li>
+                        <li>• Duration: 2-4 days recommended</li>
+                      </ul>
                     </div>
                   </div>
                 </div>

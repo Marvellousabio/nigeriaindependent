@@ -178,18 +178,37 @@ const ImageGenerator = () => {
                 />
               </div>
 
-              <div className="flex gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button
                   onClick={handleDownload}
-                  className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center"
+                  className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center justify-center"
                 >
                   <Download className="mr-2" size={16} />
                   Download
                 </button>
 
                 <button
+                  onClick={() => {
+                    const shareData = {
+                      title: 'AI Generated Nigerian Cultural Image',
+                      text: 'Check out this beautiful AI-generated image of Nigerian culture!',
+                      url: window.location.href
+                    };
+                    if (navigator.share) {
+                      navigator.share(shareData);
+                    } else {
+                      navigator.clipboard.writeText(window.location.href);
+                      alert('Link copied to clipboard!');
+                    }
+                  }}
+                  className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 flex items-center justify-center"
+                >
+                  Share
+                </button>
+
+                <button
                   onClick={() => setGeneratedImage(null)}
-                  className="px-6 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 flex items-center"
+                  className="px-6 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 flex items-center justify-center"
                 >
                   <RefreshCw className="mr-2" size={16} />
                   Generate New

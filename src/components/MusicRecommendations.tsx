@@ -112,12 +112,9 @@ const MusicRecommendations = () => {
                     <p className="text-gray-600 text-sm mb-3">{song.description}</p>
 
                     <div className="flex items-center space-x-4 text-sm text-gray-500">
-                      <span className="flex items-center">
-                        <Music className="w-4 h-4 mr-1" />
-                        {song.genre}
-                      </span>
-                      <span>{song.duration}</span>
-                      <span>⭐ {song.rating}/5</span>
+                      <span>• {song.genre}</span>
+                      <span>• {song.duration}</span>
+                      <span>• ⭐ {song.rating}/5</span>
                     </div>
                   </div>
 
@@ -125,7 +122,23 @@ const MusicRecommendations = () => {
                     <button className="p-2 text-gray-400 hover:text-red-500 transition-colors" aria-label="Like song">
                       <Heart size={20} />
                     </button>
-                    <button className="p-2 text-gray-400 hover:text-blue-500 transition-colors" aria-label="Share song">
+                    <button
+                      onClick={() => {
+                        const shareText = `Check out this Nigerian song: "${song.title}" by ${song.artist}\n\n${song.description}\n\nFind more at: ${window.location.href}`;
+                        if (navigator.share) {
+                          navigator.share({
+                            title: song.title,
+                            text: shareText,
+                            url: window.location.href
+                          });
+                        } else {
+                          navigator.clipboard.writeText(shareText);
+                          alert('Song details copied to clipboard!');
+                        }
+                      }}
+                      className="p-2 text-gray-400 hover:text-blue-500 transition-colors"
+                      aria-label="Share song"
+                    >
                       <Share2 size={20} />
                     </button>
                     <button className="p-2 text-green-600 hover:text-green-700 transition-colors" aria-label="Play song">

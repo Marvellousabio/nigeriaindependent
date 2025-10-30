@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import ReviewModal from './ReviewModal';
 
-const Footer = ({ companyName = "Nigeria Independent", year = new Date().getFullYear() }) => {
+const Footer = ({ companyName = "Marvellous Ogunleke", year = new Date().getFullYear() }) => {
   const [showReviewModal, setShowReviewModal] = useState(false);
   const [mounted, setMounted] = useState(false);
   const visitorId = mounted && typeof window !== 'undefined' ? localStorage.getItem('visitorId') : null;
@@ -30,12 +30,12 @@ const Footer = ({ companyName = "Nigeria Independent", year = new Date().getFull
               <p className='text-green-100'>Discover the rich culture, history, and beauty of Nigeria through immersive experiences and AI-powered insights.</p>
               <div className='mt-4'>
                 <a
-                  href="https://www.buymeacoffee.com/marvellousabi"
+                  href="https://selar.com/showlove/marvellousabio"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className='inline-block bg-yellow-500 text-black px-4 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition-colors'
+                  className='inline-block bg-pink-500 text-black px-4 py-2 rounded-lg font-semibold hover:bg-pink-400 transition-colors'
                 >
-                  ☕ Buy Me a Coffee
+                  Support me on selar
                 </a>
               </div>
             </div>
@@ -61,7 +61,7 @@ const Footer = ({ companyName = "Nigeria Independent", year = new Date().getFull
               <h4 className='font-semibold mb-4'>Support</h4>
               <ul className='space-y-2'>
                 <li><button onClick={handleReviewClick} className='text-green-100 hover:text-white cursor-pointer'>Leave a Review</button></li>
-                <li><Link href="#" className='text-green-100 hover:text-white'>Contact Us</Link></li>
+                <li><Link href="https://www.linkedin.com/in/marvellous-ogunleke2025" className='text-green-100 hover:text-white'>Contact Us</Link></li>
                 <li><Link href="#" className='text-green-100 hover:text-white'>Privacy Policy</Link></li>
                 <li><Link href="#" className='text-green-100 hover:text-white'>Terms of Service</Link></li>
               </ul>

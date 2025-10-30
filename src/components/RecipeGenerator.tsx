@@ -161,19 +161,14 @@ const RecipeGenerator = () => {
               </div>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-4 mb-6">
-              <div className="flex items-center">
-                <Clock className="w-5 h-5 text-green-600 mr-2" />
-                <span className="text-sm">{recipe.cookingTime}</span>
-              </div>
-              <div className="flex items-center">
-                <Users className="w-5 h-5 text-green-600 mr-2" />
-                <span className="text-sm">Serves {recipe.servings}</span>
-              </div>
-              <div className="flex items-center">
-                <ChefHat className="w-5 h-5 text-green-600 mr-2" />
-                <span className="text-sm">{recipe.difficulty}</span>
-              </div>
+            <div className="mb-6">
+              <h4 className="text-lg font-semibold text-gray-800 mb-3">Recipe Overview</h4>
+              <ul className="text-sm text-gray-600 space-y-1">
+                <li>• Cooking time: {recipe.cookingTime}</li>
+                <li>• Serves: {recipe.servings} people</li>
+                <li>• Difficulty: {recipe.difficulty}</li>
+                <li>• Rating: ⭐ {recipe.rating}/5</li>
+              </ul>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
@@ -208,6 +203,26 @@ const RecipeGenerator = () => {
               <div className="mt-8 p-4 bg-green-50 rounded-lg">
                 <h4 className="text-lg font-semibold text-green-800 mb-2">Cultural Notes</h4>
                 <p className="text-gray-700">{recipe.culturalNotes}</p>
+                <div className="mt-4 flex gap-2">
+                  <button
+                    onClick={() => {
+                      const shareText = `Check out this Nigerian recipe: ${recipe.title}\n\n${recipe.description}\n\nIngredients: ${recipe.ingredients?.join(', ')}\n\nFind more at: ${window.location.href}`;
+                      if (navigator.share) {
+                        navigator.share({
+                          title: recipe.title,
+                          text: shareText,
+                          url: window.location.href
+                        });
+                      } else {
+                        navigator.clipboard.writeText(shareText);
+                        alert('Recipe details copied to clipboard!');
+                      }
+                    }}
+                    className="px-4 py-2 bg-green-600 text-white text-sm rounded-lg hover:bg-green-700"
+                  >
+                    Share Recipe
+                  </button>
+                </div>
               </div>
             )}
           </div>

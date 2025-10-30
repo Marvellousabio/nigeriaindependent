@@ -17,6 +17,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Nigeria Independent - Discover Nigeria's Culture & Heritage",
   description: "Explore Nigeria's rich history, culture, food, music, and traditions through immersive AI-powered experiences and virtual tours.",
+  verification: {
+    google: "VJpH6uVApXWoOXsaOkDFxUs7v5Ac3YhtidZnvLZlTb8"
+  }
 };
 
 export default async function RootLayout({
