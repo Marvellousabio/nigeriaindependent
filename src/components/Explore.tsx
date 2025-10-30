@@ -42,17 +42,17 @@ const Explore = () => {
               className={`px-4 py-3 mx-1 rounded-lg font-medium transition-colors text-sm md:text-base ${
                 activeTab === tab.id
                   ? 'bg-green-600 text-white shadow-md'
-                  : 'text-gray-700 hover:bg-gray-100'
+                  : 'text-gray-700 hover:bg-gray-100 shadow-sm'
               }`}
             >
-             {tab.icon} {tab.label}
+             <span className='hidden md:flex'>{tab.icon}</span> {tab.label}
             </button>
           ))}
         </div>
 
         {/* Active Tab Content */}
         <div className=" rounded-lg shadow-lg overflow-hidden">
-          <div className="p-6">
+          <div className=" transition-all duration-500 ">
             <ActiveComponent />
           </div>
         </div>

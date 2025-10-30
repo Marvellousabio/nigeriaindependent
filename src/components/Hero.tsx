@@ -1,5 +1,6 @@
 "use client";
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useEffect, useState, useMemo,useRef } from 'react'
 import { Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -91,10 +92,10 @@ const handleTimeUpdate = () => {
         </p>
         </div>
         <div className='flex gap-2 items-center '>
-            <button className="mt-6 px-6 py-3 border-none bg-green-600 text-white rounded-xl hover:bg-green-700 flex items-center">
+            <Link href="#AI"><button className="mt-6 px-6 py-3 border-none bg-green-600 text-white rounded-xl hover:bg-green-700 flex items-center" >
                 <Sparkles className="mr-2" size={16} />
                 {loading ? "Explore" : (heroContent?.ctaText || "Explore")}
-            </button>
+            </button></Link>
         <div className="mt-6 flex flex-col items-center md:items-start">
           <p className="text-sm text-gray-600 mb-2 hidden md:inline">
           <div className=" bg-opacity-80 text-green-400 px-6 py-3 rounded border-2 border-green-400 font-mono text-sm md:text-lg font-bold tracking-wider shadow-2xl">
@@ -155,33 +156,37 @@ const handleTimeUpdate = () => {
         </audio>
       </div>
       <div className='flex md:hidden mt-4 gap-2 justify-center items-center flex-col'>
-        <div className='flex flex-2'>
-          <Image
-          src="/nigeria-583.gif"
-          width={50}
-          height={50}
-          alt="Nigeria Flag"
-          layout='responsive'
-          className="w-1/2 object-cover rounded shadow-lg"
-        />
-        </div>
+        
         {/* Lyrics Display for Mobile */}
-        {isPlaying && (
-          <div className="mt-2 p-3 bg-white bg-opacity-90 rounded-lg shadow-md max-w-xs text-center">
-            <h4 className="text-xs font-semibold text-green-800 mb-1">National Anthem Lyrics</h4>
-            <p className="text-xs text-gray-700 leading-tight">
-              Arise, O compatriots, Nigeria&apos;s call obey...<br/>
-              <em>(Full lyrics play with audio)</em>
-            </p>
+       {isPlaying && (
+        <div className="mt-4 p-4 bg-white bg-opacity-90 rounded-lg shadow-md max-w-xs text-center">
+          <h4 className="text-sm font-semibold text-green-800 mb-3">
+            National Anthem Lyrics
+          </h4>
+
+          <div className="transition-all duration-500">
+            <motion.p
+              key={currentLine}
+              className="text-sm leading-tight text-green-700 font-bold"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+            >
+              {syncedLyrics[currentLine]?.text || "Lyrics will appear here..."}
+            </motion.p>
           </div>
-        )}
+        </div>
+      )}
         <div className='flex flex-2'>
           <audio
-            controls
-            className="mt-2 rounded-lg shadow-md"
-            onPlay={() => setIsPlaying(true)}
-            onPause={() => setIsPlaying(false)}
-          >
+          controls
+          ref={audioRef}
+          className="mt-4 rounded-lg shadow-md"
+          onPlay={() => setIsPlaying(true)}
+          onPause={() => setIsPlaying(false)}
+           onTimeUpdate={handleTimeUpdate}
+        >
             <source src="/nigeria-anthem.mp3" type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>
