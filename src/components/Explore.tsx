@@ -65,7 +65,7 @@ const Explore = () => {
             </div>
             <h3 className="text-lg font-semibold text-green-800 mb-2">Cultural Preservation</h3>
             <p className="text-gray-600 text-sm">
-              Our AI tools help preserve and share Nigeria's diverse cultural heritage with the world.
+              Our AI tools help preserve and share Nigeria&apos;s diverse cultural heritage with the world.
             </p>
           </div>
 

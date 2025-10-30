@@ -163,7 +163,7 @@ Nigeria may be blessed.`,
           <div className="mt-2 p-3 bg-white bg-opacity-90 rounded-lg shadow-md max-w-xs text-center">
             <h4 className="text-xs font-semibold text-green-800 mb-1">National Anthem Lyrics</h4>
             <p className="text-xs text-gray-700 leading-tight">
-              Arise, O compatriots, Nigeria's call obey...<br/>
+              Arise, O compatriots, Nigeria&apos;s call obey...<br/>
               <em>(Full lyrics play with audio)</em>
             </p>
           </div>

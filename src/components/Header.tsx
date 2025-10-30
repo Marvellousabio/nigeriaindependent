@@ -1,15 +1,13 @@
 "use client"
 import React,{useState, useEffect} from 'react'
 import Link from 'next/link'
-import { MenuSquare, X, Sun, Moon, MessageCircle } from 'lucide-react'
+import { MenuSquare, X,  MessageCircle } from 'lucide-react'
 import Image from 'next/image'
-import { useTheme } from '@/contexts/ThemeContext'
 
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
-  const { theme, toggleTheme } = useTheme()
 
   useEffect(() => {
     setMounted(true)
