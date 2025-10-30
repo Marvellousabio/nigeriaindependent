@@ -1,6 +1,6 @@
 "use client";
 import Image from 'next/image';
-import React, { useEffect, useState, useMemo } from 'react'
+import React, { useEffect, useState, useMemo,useRef } from 'react'
 import { Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -10,6 +10,22 @@ const Hero = () => {
       const [heroContent, setHeroContent] = useState<{ title?: string; description?: string; ctaText?: string } | null>(null);
       const [loading, setLoading] = useState(true);
       const independenceDate = useMemo(() => new Date("1960-10-01T00:00:00Z"), []);
+      const [currentTime, setCurrentTime] = useState(0);
+const [currentLine, setCurrentLine] = useState(0);
+const audioRef = useRef<HTMLAudioElement>(null);
+
+const handleTimeUpdate = () => {
+  const time = audioRef.current?.currentTime || 0;
+  setCurrentTime(time);
+
+  const activeIndex = syncedLyrics.findIndex((line, i) => {
+    const nextTime = syncedLyrics[i + 1]?.time || Infinity;
+    return time >= line.time && time < nextTime;
+  });
+  if (activeIndex !== -1 && activeIndex !== currentLine) {
+    setCurrentLine(activeIndex);
+  }
+};
 
     useEffect(()=>{
         const interval=setInterval(()=>{
@@ -33,28 +49,21 @@ const Hero = () => {
         generateHeroContent();
     }, []);
 
-    const fullLyrics = [
-      `Nigeria we hail thee,
-Our own dear native land,
-Though tribe and tongue may differ,
-In brotherhood, we stand,
-Nigerians all, and proud to serve
-Our sovereign Motherland.`,
+    const syncedLyrics = [
+  { time: 16.0, text: "Nigeria we hail thee,Our own dear native land" },
+  { time: 21.0, text: "Though tribe and tongue may differ,In brotherhood, we stand" },
+  { time: 45.0, text: "Nigerians all, and proud to serve, Our sovereign Motherland." },
+  { time: 60.0, text: "Our flag shall be a symbolThat truth and justice reign," },
+  { time: 75.0, text: "In peace or battle honour And this we count as gain" },
+  { time: 90.0, text: "To hand on to our children A banner without stain." },
+  { time: 100.0, text: "O God of all creation, Grant this our one request" },
+  { time: 120.0, text: "Help us to build a nation Where no man is oppressed" },
+  { time: 140.0, text: "And so with peace and plenty Nigeria may be blessed." },
+  { time: 160.0, text: "Land of our fathers' pride, Nigeria! We hail thee," },
+  { time: 180.0, text: "And bound by ties of kinship In brotherhood we stand." },
 
-      `Our flag shall be a symbol
-That truth and justice reign,
-In peace or battle honour'd,
-And this we count as gain,
-To hand on to our children
-A banner without stain.`,
-
-      `O God of all creation,
-Grant this our one request,
-Help us to build a nation
-Where no man is oppressed,
-And so with peace and plenty
-Nigeria may be blessed.`,
-    ];
+  // continue for other verses
+];
 
     const generateHeroContent = async () => {
         try {
@@ -107,6 +116,7 @@ Nigeria may be blessed.`,
           alt="Nigeria Flag"
           layout='responsive'
           className="w-1/2 object-cover rounded shadow-lg"
+
         />
         {/* Lyrics Display */}
         {isPlaying && (
@@ -115,23 +125,17 @@ Nigeria may be blessed.`,
             National Anthem Lyrics
           </h4>
 
-          <div className="space-y-3">
-            {fullLyrics.map((para: string, index: number) => (
-              <motion.p
-                key={index}
-                className="text-xs text-gray-700 leading-tight"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 2, duration: 0.8 }} // delay controls timing per paragraph
-              >
-                {para.split('\n').map((line: string, i: number) => (
-                  <span key={i}>
-                    {line}
-                    <br />
-                  </span>
-                ))}
-              </motion.p>
-            ))}
+          <div className="transition-all duration-500">
+            <motion.p
+              key={currentLine}
+              className="text-sm leading-tight text-green-700 font-bold"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+            >
+              {syncedLyrics[currentLine]?.text || "Lyrics will appear here..."}
+            </motion.p>
           </div>
         </div>
       )}
@@ -142,6 +146,7 @@ Nigeria may be blessed.`,
           className="mt-4 rounded-lg shadow-md"
           onPlay={() => setIsPlaying(true)}
           onPause={() => setIsPlaying(false)}
+           onTimeUpdate={handleTimeUpdate}
         >
           <source src="/nigeria-anthem.mp3" type="audio/mpeg" />
           Your browser does not support the audio element.
