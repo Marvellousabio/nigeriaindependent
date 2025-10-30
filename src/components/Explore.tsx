@@ -5,17 +5,17 @@ import ImageGenerator from './ImageGenerator';
 import RecipeGenerator from './RecipeGenerator';
 import MusicRecommendations from './MusicRecommendations';
 import TravelRecommendations from './TravelRecommendations';
-import { AnvilIcon,  EarthIcon, TargetIcon } from 'lucide-react';
+import { AnvilIcon,  EarthIcon, ImageIcon, Languages, MusicIcon, Plane, TargetIcon, Utensils } from 'lucide-react';
 
 const Explore = () => {
   const [activeTab, setActiveTab] = useState('translator');
 
   const tabs = [
-    { id: 'translator', label: 'Language Translator', component: LanguageTranslator },
-    { id: 'images', label: 'AI Image Generator', component: ImageGenerator },
-    { id: 'recipes', label: 'Recipe Generator', component: RecipeGenerator },
-    { id: 'music', label: 'Music Recommendations', component: MusicRecommendations },
-    { id: 'travel', label: 'Travel Recommendations', component: TravelRecommendations }
+    { id: 'translator', icon: <Languages  />, label: 'Language Translator', component: LanguageTranslator },
+    { id: 'images', icon: <ImageIcon color="#ffeb3b" />, label: 'AI Image Generator', component: ImageGenerator },
+    { id: 'recipes', icon: <Utensils />, label: 'Recipe Generator', component: RecipeGenerator },
+    { id: 'music', icon: <MusicIcon color="#00e5ff" />, label: 'Music Recommendations', component: MusicRecommendations },
+    { id: 'travel', icon: <Plane color="#ff4081"/>, label: 'Travel Recommendations', component: TravelRecommendations }
   ];
 
   const ActiveComponent = tabs.find(tab => tab.id === activeTab)?.component || LanguageTranslator;
@@ -45,7 +45,7 @@ const Explore = () => {
                   : 'text-gray-700 hover:bg-gray-100'
               }`}
             >
-              {tab.label}
+             {tab.icon} {tab.label}
             </button>
           ))}
         </div>
