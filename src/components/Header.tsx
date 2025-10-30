@@ -24,6 +24,7 @@ const Header = () => {
     setIsOpen(false)
   }
 
+
   const scrollToAI = () => {
     const aiSection = document.getElementById('AI');
     if (aiSection) {
@@ -54,6 +55,8 @@ const Header = () => {
             AI
           </button>
           <Link href='/FAQ' className='hover:text-accent-300 transition-colors'>FAQs</Link>
+          <Link href='/https://marvellous-ogunleke.vercel.app/schedule-call' target='blank' className='hover:bg-opacity-90 bg-white text-green-700 transition-colors'> Hire Me</Link>
+  
           
         </nav>
         <div className='md:hidden'>
