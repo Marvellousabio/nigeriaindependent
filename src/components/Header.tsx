@@ -1,7 +1,7 @@
 "use client"
 import React,{useState, useEffect} from 'react'
 import Link from 'next/link'
-import { MenuSquare, X,  MessageCircle,  PhoneForwardedIcon } from 'lucide-react'
+import { MenuSquare, X,  MessageCircle,  PhoneForwardedIcon, HandHeart } from 'lucide-react'
 import Image from 'next/image'
 
 
@@ -87,21 +87,16 @@ const Header = () => {
                   
             {/* Mobile Theme Toggle */}
             <div className='border-t border-secondary-300 mt-4 pt-4'>
-              <a
-                  href="https://marvellous-ogunleke.vercel.app/schedule-call"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className='inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border-2 border-transparent hover:border-white '
-                >
-                  Hire Me
-                </a>
+              <Link href='/https://marvellous-ogunleke.vercel.app/schedule-call' target='blank'
+           className='bg-white text-green-700 font-semibold py-1 px-3 rounded-lg shadow-lg hover:opacity-90 transform hover:scale-105 transition-all duration-300 flex flex-row gap-1 items-center'> Hire Me <PhoneForwardedIcon size={15}/></Link>
+  
               <a
                   href="https://selar.com/showlove/marvellousabio"
                   target="_blank"
                   rel="noopener noreferrer"
                   className='inline-block bg-pink-500 text-black px-4 py-2 rounded-lg font-semibold hover:bg-pink-400 transition-colors'
                 >
-                  Support me on selar
+                  Support <HandHeart size={16} />
                 </a>
             </div>
           </nav>

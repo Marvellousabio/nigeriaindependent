@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import ReviewModal from './ReviewModal';
+import { HandHeart } from "lucide-react";
 
 const Footer = ({ companyName = "Marvellous Ogunleke", year = new Date().getFullYear() }) => {
   const [showReviewModal, setShowReviewModal] = useState(false);
@@ -33,9 +34,9 @@ const Footer = ({ companyName = "Marvellous Ogunleke", year = new Date().getFull
                   href="https://selar.com/showlove/marvellousabio"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className='inline-block bg-pink-500 text-black px-4 py-2 rounded-lg font-semibold hover:bg-pink-400 transition-colors'
+                  className='inline-block bg-yellow-600 text-black px-4 py-2 rounded-lg font-semibold hover:bg-pink-400 transition-colors'
                 >
-                  Support me on selar
+                   Support <HandHeart size={16} />
                 </a>
               </div>
             </div>
