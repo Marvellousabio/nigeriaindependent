@@ -29,16 +29,21 @@ const Footer = ({ companyName = "Marvellous Ogunleke", year = new Date().getFull
             <div>
               <h3 className='text-xl font-bold mb-4'>{companyName}</h3>
               <p className='text-green-100'>Discover the rich culture, history, and beauty of Nigeria through immersive experiences and AI-powered insights.</p>
-              <div className='mt-4'>
+              <div className='mt-6'>
                 <a
-                  href="https://selar.com/showlove/marvellousabio"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className='inline-block bg-yellow-600 text-black px-4 py-2 rounded-lg font-semibold hover:bg-pink-400 transition-colors'
-                >
-                   Support <HandHeart size={16} />
-                </a>
-              </div>
+            href="https://selar.com/showlove/marvellousabio"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2 bg-gradient-to-r from-[#6F4E37] to-[#8B5E3C] text-white px-5 py-2.5 rounded-xl font-semibold shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 active:scale-95 focus:ring-2 focus:ring-[#FFDD00] focus:outline-none"
+          >
+            <span className="flex items-center">
+              Support
+              <span className="ml-2 transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110">
+                <HandHeart size={18} className="text-[#FFDD00]" />
+              </span>
+            </span>
+          </a>
+                              </div>
             </div>
             <div>
               <h4 className='font-semibold mb-4'>Quick Links</h4>

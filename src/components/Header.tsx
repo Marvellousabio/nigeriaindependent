@@ -86,18 +86,25 @@ const Header = () => {
             <Link href='/FAQ' className='hover:text-accent-300 py-2' onClick={() => setIsOpen(false)}>FAQs</Link>
                   
             {/* Mobile Theme Toggle */}
-            <div className='border-t border-secondary-300 mt-4 pt-4'>
-              <Link href='/https://marvellous-ogunleke.vercel.app/schedule-call' target='blank'
-           className='bg-white text-green-700 font-semibold py-1 px-3 rounded-lg shadow-lg hover:opacity-90 transform hover:scale-105 transition-all duration-300 flex flex-row gap-1 items-center'> Hire Me <PhoneForwardedIcon size={15}/></Link>
-  
-              <a
-                  href="https://selar.com/showlove/marvellousabio"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className='inline-block bg-pink-500 text-black px-4 py-2 rounded-lg font-semibold hover:bg-pink-400 transition-colors'
-                >
-                  Support <HandHeart size={16} />
-                </a>
+            <div className='border-t border-secondary-300 mt-4 pt-4 flex flex-col gap-3'>
+              {/* Hire Me Button */}
+      <Link
+        href="https://marvellous-ogunleke.vercel.app/schedule-call"
+        target="_blank"
+        className="bg-white text-green-700 font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-yellow-100 hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-2 justify-center"
+      >
+        Hire Me <PhoneForwardedIcon size={16} className="text-green-700" />
+      </Link>
+
+      {/* Support Button */}
+      <a
+        href="https://selar.com/showlove/marvellousabio"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="bg-gradient-to-r from-[#6F4E37] to-[#8B5E3C] text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2"
+      >
+        Support <HandHeart size={16} className="text-[#FFDD00]" />
+      </a>
             </div>
           </nav>
         </div>
