@@ -96,11 +96,11 @@ const handleTimeUpdate = () => {
                 {loading ? "Explore" : (heroContent?.ctaText || "Explore")}
             </button>
         <div className="mt-6 flex flex-col items-center md:items-start">
-          <p className="text-sm text-gray-600 mb-2"><span className='hidden md:inline'>
+          <p className="text-sm text-gray-600 mb-2 hidden md:inline">
           <div className=" bg-opacity-80 text-green-400 px-6 py-3 rounded border-2 border-green-400 font-mono text-sm md:text-lg font-bold tracking-wider shadow-2xl">
             {age}
           </div>
-          </span>years old</p>
+          years old</p>
         </div>
 
         </div>
