@@ -50,20 +50,20 @@ const handleTimeUpdate = () => {
     }, []);
 
     const syncedLyrics = [
-  { time: 16.0, text: "Nigeria we hail thee,Our own dear native land" },
-  { time: 21.0, text: "Though tribe and tongue may differ,In brotherhood, we stand" },
-  { time: 45.0, text: "Nigerians all, and proud to serve, Our sovereign Motherland." },
-  { time: 60.0, text: "Our flag shall be a symbolThat truth and justice reign," },
-  { time: 75.0, text: "In peace or battle honour And this we count as gain" },
-  { time: 90.0, text: "To hand on to our children A banner without stain." },
-  { time: 100.0, text: "O God of all creation, Grant this our one request" },
-  { time: 120.0, text: "Help us to build a nation Where no man is oppressed" },
-  { time: 140.0, text: "And so with peace and plenty Nigeria may be blessed." },
-  { time: 160.0, text: "Land of our fathers' pride, Nigeria! We hail thee," },
-  { time: 180.0, text: "And bound by ties of kinship In brotherhood we stand." },
+  { time: 0.0, text: "...................." },
+  { time: 12.0, text: "Nigeria we hail thee, Our own dear native land," },
+  { time: 21.0, text: "Though tribe and tongue may differ, In brotherhood we stand," },
+  { time: 28.0, text: "Nigerians all, and proud to serve our sovereign Motherland." },
+  { time: 37.0, text: "Our flag shall be a symbol that truth and justice reign," },
+  { time: 45.0, text: "In peace or battle honour’d, and this we count as gain," },
+  { time: 53.0, text: "To hand on to our children a banner without stain." },
+  { time: 62.0, text: "...................." },
+  { time: 66.0, text: "O God of all creation, grant this our one request," },
+  { time: 74.0, text: "Help us to build a nation where no man is oppressed," },
+  { time: 81.0, text: "And so with peace and plenty, Nigeria may be blessed." },
+  { time: 90.0, text: "...................." },
+    ];
 
-  // continue for other verses
-];
 
     const generateHeroContent = async () => {
         try {
@@ -96,10 +96,11 @@ const handleTimeUpdate = () => {
                 {loading ? "Explore" : (heroContent?.ctaText || "Explore")}
             </button>
         <div className="mt-6 flex flex-col items-center md:items-start">
-          <p className="text-sm text-gray-600 mb-2"><span className='hidden md:inline'>We are </span>years old</p>
-          <div className="bg-black bg-opacity-80 text-green-400 px-6 py-3 rounded border-2 border-green-400 font-mono text-lg md:text-2xl font-bold tracking-wider shadow-2xl">
+          <p className="text-sm text-gray-600 mb-2"><span className='hidden md:inline'>
+          <div className=" bg-opacity-80 text-green-400 px-6 py-3 rounded border-2 border-green-400 font-mono text-sm md:text-lg font-bold tracking-wider shadow-2xl">
             {age}
           </div>
+          </span>years old</p>
         </div>
 
         </div>
@@ -143,6 +144,7 @@ const handleTimeUpdate = () => {
         {/* Audio Controls */}
         <audio
           controls
+          ref={audioRef}
           className="mt-4 rounded-lg shadow-md"
           onPlay={() => setIsPlaying(true)}
           onPause={() => setIsPlaying(false)}
