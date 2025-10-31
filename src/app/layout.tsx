@@ -15,11 +15,27 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Nigeria Independent - Discover Nigeria's Culture & Heritage",
-  description: "Explore Nigeria's rich history, culture, food, music, and traditions through immersive AI-powered experiences and virtual tours.",
+  title: "Nigeria Independent - Experience Nigeria’s Culture with AI",
+  description:
+    "Explore Nigeria's rich history, culture, food, music, and traditions through immersive AI-powered experiences and virtual tours. Celebrate Nigeria’s diversity with modern technology.",
   verification: {
-    google: "VJpH6uVApXWoOXsaOkDFxUs7v5Ac3YhtidZnvLZlTb8"
-  }
+    google: "VJpH6uVApXWoOXsaOkDFxUs7v5Ac3YhtidZnvLZlTb8",
+  },
+  keywords:
+    "Nigeria tourism, Nigerian culture, travel Nigeria, Nigerian heritage, AI tours, virtual Nigeria, explore Africa, Nigerian music, Nigerian food, Nigerian history",
+  authors: [{ name: "Nigeria Independent" }],
+  openGraph: {
+    title:
+      "Nigeria Independent - Discover Nigeria's Culture & Heritage | Explore with AI",
+    description:
+      "Immerse yourself in Nigeria’s diverse culture, music, food, and art through interactive AI experiences and virtual journeys.",
+    type: "website",
+    url: "https://nigeriaindependent.vercel.app", // Replace with your actual site URL
+    siteName: "Nigeria Independent",
+  },
+  alternates: {
+    canonical: "https://nigeriaindependent.vercel.app", // canonical tag fix
+  },
 };
 
 export default async function RootLayout({
