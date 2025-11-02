@@ -4,6 +4,7 @@ import Link from 'next/link';
 import React, { useEffect, useState, useMemo,useRef } from 'react'
 import { Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
+import VisitorPopup from '@/components/VisitorPopup';
 
 const Hero = () => {
       const [age,setAge]= useState(" ");
