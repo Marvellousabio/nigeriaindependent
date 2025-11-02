@@ -23,7 +23,7 @@ const Footer = ({ companyName = "Marvellous Ogunleke", year = new Date().getFull
 
   return (
     <>
-      <footer className=" text-white dark:bg-gray-900/95  py-8">
+      <footer className=" text-white bg-gray-900/95  py-8">
         <div className='max-w-6xl mx-auto px-6 md:px-16'>
           <div className='grid md:grid-cols-4 gap-8'>
             <div>
@@ -37,7 +37,7 @@ const Footer = ({ companyName = "Marvellous Ogunleke", year = new Date().getFull
             className="group inline-flex items-center gap-2 bg-gradient-to-r from-[#6F4E37] to-[#8B5E3C] text-white px-5 py-2.5 rounded-xl font-semibold shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 active:scale-95 focus:ring-2 focus:ring-[#FFDD00] focus:outline-none"
           >
             <span className="flex items-center">
-              Support
+              <span className="hidden md:flex">Support </span>project
               <span className="ml-2 transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110">
                 <HandHeart size={18} className="text-[#FFDD00]" />
               </span>
