@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { Sparkles } from 'lucide-react'
 import { AboutContent } from '../types'
 
+
 const About = () => {
   const [aboutContent, setAboutContent] = useState<AboutContent | null>(null);
   const [loading, setLoading] = useState(true);
@@ -27,6 +28,7 @@ const About = () => {
 
   return (
     <section className="px-4 md:px-10 py-16 bg-white">
+      
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-4xl font-bold text-green-800">

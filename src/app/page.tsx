@@ -10,7 +10,6 @@ import CulturalQuiz from '@/components/CulturalQuiz'
 import Info from '@/components/Info'
 import Footer from '@/components/Footer'
 import ChatBot from '@/components/ChatBot'
-import VisitorPopup from '@/components/VisitorPopup'
 
 
 
@@ -27,7 +26,6 @@ const page = () => {
       <div id="chat-section">
         <ChatBot/>
       </div>
-      <VisitorPopup />
       <Footer />
     </div>
   )

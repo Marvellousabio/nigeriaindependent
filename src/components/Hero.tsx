@@ -52,7 +52,7 @@ const handleTimeUpdate = () => {
     }, []);
 
     const syncedLyrics = [
-  { time: 0.0, text: "...................." },
+  { time: 0.0, text: "............" },
   { time: 12.0, text: "Nigeria we hail thee, Our own dear native land," },
   { time: 21.0, text: "Though tribe and tongue may differ, In brotherhood we stand," },
   { time: 28.0, text: "Nigerians all, and proud to serve our sovereign Motherland." },
@@ -81,7 +81,8 @@ const handleTimeUpdate = () => {
         }
     };
   return (
-    <section className="lg:min-h-screen flex flex-col md:flex-row  items-center justify-between px-8 py-27 md:px-12 bg-green-50">
+    <section className="lg:min-h-screen flex flex-col md:flex-row  items-center justify-between px-8 py-27 md:px-12 bg-green-50 relative">
+      <VisitorPopup />
       {/* Left Side */}
       <div className=" md:mt-10 text-center md:text-left md:space-y-10 lg:col-span-7 ">
         <div className='flex flex-col md:space-y-4  '>
