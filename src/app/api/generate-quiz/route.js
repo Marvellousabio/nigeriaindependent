@@ -4,43 +4,52 @@ import { generateText } from "ai";
 
 export async function GET() {
   try {
-    const prompt = `Generate 10 multiple-choice questions about Nigerian culture, history, and traditions for foreigners visiting Nigeria. Each question should have 4 options with one correct answer.
+    // Randomize quiz seed to avoid repeated results
+    const randomSeed = Math.floor(Math.random() * 100000);
 
-Format as JSON:
-{
-  "questions": [
+    const prompt = `
+    You are a Nigerian culture expert and quiz creator.
+    Generate 10 UNIQUE and ENGAGING multiple-choice questions about Nigeria for foreigners.
+
+    Make sure the first question is NOT about independence or basic facts.
+    Include at least one question from each of these categories:
+    - History (but not independence)
+    - Ethnic groups and languages
+    - Food and cuisine
+    - Festivals and traditions
+    - Geography and landmarks
+    - Music, film, and entertainment
+    - Business and innovation
+    - Etiquette and social customs
+    - Sports or famous figures
+    - Fun or surprising facts about Nigeria
+
+    Make each question interesting, clear, and not too easy.
+    Use natural phrasing, slight randomness, and variety in structure.
+
+    Add variety based on this random seed: ${randomSeed}
+
+    Format response strictly as JSON:
     {
-      "question": "Question text here?",
-      "options": ["Option A", "Option B", "Option C", "Option D"],
-      "correct": 0,
-      "explanation": "Brief explanation of why this is correct and additional context"
-    }
-  ]
-}
-
-Cover topics like:
-- History and independence
-- Major ethnic groups and languages
-- Traditional food and cuisine
-- Cultural practices and festivals
-- Geography and landmarks
-- Music and entertainment
-- Business culture
-- Social customs and etiquette
-
-Make questions educational and engaging for tourists.`;
+      "questions": [
+        {
+          "question": "Question text?",
+          "options": ["Option A", "Option B", "Option C", "Option D"],
+          "correct": 1,
+          "explanation": "Brief, friendly explanation (1-2 lines)"
+        }
+      ]
+    }`;
 
     const { text } = await generateText({
-      model: google("gemini-2.5-flash"),
+      model: google("gemini-2.5-flash"), 
       prompt,
     });
 
-    // Parse the JSON response
     let quizData;
     try {
       quizData = JSON.parse(text);
-    } catch (parseError) {
-      // If parsing fails, try to extract JSON from the text
+    } catch {
       const jsonMatch = text.match(/\{[\s\S]*\}/);
       if (jsonMatch) {
         quizData = JSON.parse(jsonMatch[0]);
@@ -52,6 +61,9 @@ Make questions educational and engaging for tourists.`;
     return NextResponse.json(quizData);
   } catch (error) {
     console.error("Quiz generation API error:", error);
-    return NextResponse.json({ error: "Failed to generate quiz" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to generate quiz" },
+      { status: 500 }
+    );
   }
 }

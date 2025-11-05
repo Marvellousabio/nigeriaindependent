@@ -93,18 +93,17 @@ const handleTimeUpdate = () => {
           {loading ? "Discover the Giant of Africa - a land of rich culture, diverse heritage, and unbreakable resilience. From our vibrant traditions to our proud history, explore what makes Nigeria extraordinary." : (heroContent?.description || "Discover the Giant of Africa - a land of rich culture, diverse heritage, and unbreakable resilience. From our vibrant traditions to our proud history, explore what makes Nigeria extraordinary.")}
         </p>
         </div>
-        <div className='flex gap-2 items-center '>
-            <Link href="#AI"><button className="mt-6 px-6 py-3 border-none bg-green-600 text-white rounded-xl hover:bg-green-700 flex items-center" >
+        
+
+        <div className='flex gap-4 items-center flex-wrap'>
+            <Link href="#chat-section"><button className="mt-6 px-6 py-3 border-none bg-green-600 text-white rounded-xl hover:bg-green-700 flex items-center transition-transform hover:scale-105" >
                 <Sparkles className="mr-2" size={16} />
-                {loading ? "Explore" : (heroContent?.ctaText || "Explore")}
+                Try AI Assistant
             </button></Link>
-        <div className="mt-6 flex flex-col items-center md:items-start">
-          <p className="text-sm text-gray-600 mb-2 hidden md:inline">
-          <div className=" bg-opacity-80 text-green-400 px-6 py-3 rounded border-2 border-green-400 font-mono text-sm md:text-lg font-bold tracking-wider shadow-2xl">
-            {age}
-          </div>
-          years old</p>
-        </div>
+            <Link href="#AI"><button className="mt-6 px-6 py-3 border border-green-600 bg-white text-green-600 rounded-xl hover:bg-green-50 flex items-center transition-transform hover:scale-105" >
+                See Available Tools
+            </button></Link>
+        
 
         </div>
           </div>
@@ -123,7 +122,8 @@ const handleTimeUpdate = () => {
 
         />
         {/* Lyrics Display */}
-        {isPlaying && (
+
+        {isPlaying? (
         <div className="mt-4 p-4 bg-white bg-opacity-90 rounded-lg shadow-md max-w-xs text-center">
           <h4 className="text-sm font-semibold text-green-800 mb-3">
             National Anthem Lyrics
@@ -142,7 +142,14 @@ const handleTimeUpdate = () => {
             </motion.p>
           </div>
         </div>
-      )}
+      ):<div className="mt-6 flex flex-col items-center md:items-start">
+  <p className="hidden md:flex items-center text-xs md:text-lg text-gray-600 mb-2 font-mono tracking-wider">
+    <span className="px-2 py-1 rounded border-2 border-green-400 text-green-400 text-sm  font-medium shadow-2xl bg-opacity-80">
+      {age}
+    </span>
+    <span className="ml-2 text-xs">years old</span>
+  </p>
+</div>}
         </div>
         {/* Audio Controls */}
         <audio

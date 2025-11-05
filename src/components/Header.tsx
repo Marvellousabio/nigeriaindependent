@@ -1,7 +1,7 @@
 "use client"
 import React,{useState, useEffect} from 'react'
 import Link from 'next/link'
-import { MenuSquare, X,  MessageCircle,  PhoneForwardedIcon, HandHeart } from 'lucide-react'
+import { MenuSquare, X,  MessageCircle,  PhoneForwardedIcon, HandHeart, Bot } from 'lucide-react'
 import Image from 'next/image'
 
 
@@ -45,15 +45,12 @@ const Header = () => {
 
         <nav className='hidden md:flex space-x-4 text-white gap-7 pr-4'>
           <Link href="/" className='hover:text-accent-300 transition-colors'>Home</Link>
+          <Link href='/AI' className='hover:text-accent-300 transition-colors flex items-center gap-1'><Bot size={16} />AI</Link>
+
+          
           <Link href='/News' className='hover:text-accent-300 transition-colors'>News</Link>
           <Link href='/History' className='hover:text-accent-300 transition-colors'>History</Link>
-          <button
-            onClick={scrollToAI}
-            className='hover:text-accent-300 transition-colors flex items-center gap-1'
-          >
-            <MessageCircle size={16} />
-            AI
-          </button>
+          
           <Link href='/FAQ' className='hover:text-accent-300 transition-colors'>FAQs</Link>
           <Link href='/https://marvellous-ogunleke.vercel.app/schedule-call' target='blank'
            className='bg-white text-green-700 font-semibold py-1 px-3 rounded-lg shadow-lg hover:opacity-90 transform hover:scale-105 transition-all duration-300 flex flex-row gap-1 items-center'> Hire Me <PhoneForwardedIcon size={15}/></Link>

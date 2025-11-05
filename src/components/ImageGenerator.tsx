@@ -3,15 +3,10 @@ import React, { useState } from 'react';
 import { ImageIcon, Download, RefreshCw } from 'lucide-react';
 import Image from 'next/image';
 
-interface UploadedImage {
-  name: string;
-  base64: string;
-}
 
 const ImageGenerator = () => {
   const [prompt, setPrompt] = useState('');
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
-  const [uploadedImage, setUploadedImage] = useState<UploadedImage | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -28,21 +23,6 @@ const ImageGenerator = () => {
     "Nigerian children playing traditional games"
   ];
 
-  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    // Convert uploaded image to Base64
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      if (typeof reader.result === 'string') {
-        const base64String = reader.result.split(",")[1];
-        setUploadedImage({ name: file.name, base64: base64String });
-      }
-    };
-    reader.readAsDataURL(file);
-  };
-
   const handleGenerate = async () => {
     if (!prompt.trim()) return;
 
@@ -53,9 +33,7 @@ const ImageGenerator = () => {
       const response = await fetch('/api/generate-image', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt, 
-          base64Image: uploadedImage ? uploadedImage.base64 : null,
-         })
+        body: JSON.stringify({ prompt })
       });
 
       if (response.ok) {
@@ -103,23 +81,6 @@ const ImageGenerator = () => {
         </p>
 
         <div className="bg-white p-8 rounded-lg shadow-lg">
-          <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Upload an image (optional)
-            </label>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleImageUpload}
-              className="block w-full text-sm text-gray-700 border border-gray-300 rounded-lg cursor-pointer focus:outline-none p-2"
-              aria-label="Upload an image for AI generation"
-            />
-            {uploadedImage && (
-              <p className="text-sm text-green-700 mt-2">
-                Image loaded: {uploadedImage.name}
-              </p>
-            )}
-          </div>
 
           <div className="mb-6">
             <label className="block text-sm font-medium text-gray-700 mb-2">

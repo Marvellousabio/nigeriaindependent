@@ -7,48 +7,51 @@ export async function POST(req) {
     const { cuisine, dietary, difficulty, time } = await req.json();
 
     if (!cuisine || !difficulty || !time) {
-      return NextResponse.json({ error: "Cuisine, difficulty, and time are required" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Cuisine, difficulty, and time are required" },
+        { status: 400 }
+      );
     }
 
-    const dietaryText = dietary.length > 0 ? ` with ${dietary.join(', ')} dietary considerations` : '';
+    const dietaryText =
+      dietary?.length > 0
+        ? ` considering ${dietary.join(", ")} preferences`
+        : "";
 
-    const prompt = `Generate an authentic Nigerian recipe based on these preferences:
+    const prompt = `
+    You are a friendly Nigerian chef. Create a short, easy-to-follow recipe using clear and simple English.
+
+    Based on:
     - Cuisine: ${cuisine}
     - Difficulty: ${difficulty}
     - Cooking time: ${time}${dietaryText}
 
-    Provide a complete recipe in this JSON format:
-    {
-      "title": "Recipe Name",
-      "description": "Brief description of the dish and its cultural significance",
-      "cookingTime": "Estimated cooking time",
-      "servings": "Number of servings",
-      "difficulty": "Difficulty level",
-      "rating": 4.5,
-      "ingredients": [
-        "ingredient 1 with quantity",
-        "ingredient 2 with quantity"
-      ],
-      "instructions": [
-        "Step 1 description",
-        "Step 2 description"
-      ],
-      "culturalNotes": "Interesting cultural facts about this dish"
-    }
+    Keep it short and beginner-friendly. Avoid long paragraphs.
+    Use bullet points for ingredients and steps.
+    Use friendly, conversational tone.
 
-    Make sure the recipe is authentic to Nigerian cuisine and includes proper measurements.`;
+    Format response in JSON like this:
+    {
+      "title": "Dish name",
+      "description": "1-line description",
+      "cookingTime": "Estimated time",
+      "servings": "Number of servings",
+      "difficulty": "Easy / Medium / Hard",
+      "rating": 4.5,
+      "ingredients": ["short ingredient 1", "short ingredient 2", "short ingredient 3"],
+      "instructions": ["short step 1", "short step 2", "short step 3"],
+      "culturalNotes": "1 or 2 lines about why Nigerians love this dish"
+    }`;
 
     const { text } = await generateText({
       model: google("gemini-2.5-flash"),
       prompt,
     });
 
-    // Parse the JSON response
     let recipe;
     try {
       recipe = JSON.parse(text);
-    } catch (parseError) {
-      // If parsing fails, try to extract JSON from the text
+    } catch {
       const jsonMatch = text.match(/\{[\s\S]*\}/);
       if (jsonMatch) {
         recipe = JSON.parse(jsonMatch[0]);
@@ -60,6 +63,9 @@ export async function POST(req) {
     return NextResponse.json(recipe);
   } catch (error) {
     console.error("Recipe generation API error:", error);
-    return NextResponse.json({ error: "Failed to generate recipe" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to generate recipe" },
+      { status: 500 }
+    );
   }
 }
