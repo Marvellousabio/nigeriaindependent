@@ -95,12 +95,12 @@ const handleTimeUpdate = () => {
         </div>
         
 
-        <div className='flex gap-4 items-center flex-wrap'>
-            <Link href="#chat-section"><button className="mt-6 px-6 py-3 border-none bg-green-600 text-white rounded-xl hover:bg-green-700 flex items-center transition-transform hover:scale-105" >
+        <div className='flex gap-4 items-center flex-row'>
+            <Link href="AI"><button className="mt-6 px-3 py-1 md:px-6 md:py-3 border-none bg-green-600 text-white rounded-xl hover:bg-green-700 flex items-center transition-transform hover:scale-105" >
                 <Sparkles className="mr-2" size={16} />
-                Try AI Assistant
+                Try AI for free
             </button></Link>
-            <Link href="#AI"><button className="mt-6 px-6 py-3 border border-green-600 bg-white text-green-600 rounded-xl hover:bg-green-50 flex items-center transition-transform hover:scale-105" >
+            <Link href="#AI"><button className="mt-6 px-3 py-1 md:px-6 md:py-3 border border-green-600 bg-white text-green-600 rounded-xl hover:bg-green-50 flex items-center transition-transform hover:scale-105" >
                 See Available Tools
             </button></Link>
         

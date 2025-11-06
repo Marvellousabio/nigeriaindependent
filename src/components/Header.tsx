@@ -71,15 +71,9 @@ const Header = () => {
         <div className='fixed top-16 left-0 right-0 z-30 bg-green-600 border-b border-secondary-300 shadow-lg'>
           <nav className='flex flex-col md:hidden text-white gap-4 py-6 px-6'>
             <Link href="/" className='hover:text-accent-300 py-2' onClick={() => setIsOpen(false)}>Home</Link>
-            <Link href='/News' className='hover:text-accent-300 transition-colors'>News</Link>
+            <Link href='/AI' className='hover:text-accent-300 transition-colors flex items-center gap-1' onClick={() => setIsOpen(false)}><Bot size={16} />AI</Link>
+            <Link href='/News' className='hover:text-accent-300 transition-colors' onClick={() => setIsOpen(false)}>News</Link>
             <Link href='/History' className='hover:text-accent-300 py-2' onClick={() => setIsOpen(false)}>History</Link>
-            <button
-              onClick={() => { scrollToAI(); setIsOpen(false); }}
-              className='hover:text-accent-300 py-2 text-left flex items-center gap-2'
-            >
-              <MessageCircle size={16} />
-              AI Assistant
-            </button>
             <Link href='/FAQ' className='hover:text-accent-300 py-2' onClick={() => setIsOpen(false)}>FAQs</Link>
                   
             {/* Mobile Theme Toggle */}
