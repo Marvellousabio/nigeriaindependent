@@ -30,7 +30,7 @@ Make the content informative, welcoming, and focused on what makes Nigeria speci
     } catch (parseError) {
       // If parsing fails, try to extract JSON from the text
       const jsonMatch = text.match(/\{[\s\S]*\}/);
-      if (jsonMatch) {
+      if (jsonMatch ) {
         aboutData = JSON.parse(jsonMatch[0]);
       } else {
         throw new Error("Failed to parse AI response");
